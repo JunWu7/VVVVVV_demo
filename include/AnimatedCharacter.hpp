@@ -11,22 +11,31 @@
 class AnimatedCharacter : public Util::GameObject {
 
 public:
-    explicit AnimatedCharacter(const std::vector<std::string>& AnimationPaths);
+	explicit AnimatedCharacter(const std::vector<std::string>& AnimationPaths);
 
-    [[nodiscard]] bool IsLooping() const {
-        return std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->GetLooping();
-    }
+	[[nodiscard]] bool IsLooping() const {
+		return std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->GetLooping();
+	}
 
-    [[nodiscard]] bool IsPlaying() const {
-        return std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->GetState() == Util::Animation::State::PLAY;
-    }
+	[[nodiscard]] bool IsPlaying() const {
+		return std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->GetState() == Util::Animation::State::PLAY;
+	}
 
-    void SetLooping(bool looping) {
-        auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
-        temp->SetLooping(looping);
-    }
+	void SetLooping(bool looping) {
+		auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
+		temp->SetLooping(looping);
+	}
 
-    [[nodiscard]] bool IfAnimationEnds() const;
+	void SetPlaying(bool play) {
+		std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->SetInterval(100);
+		std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->Play();
+	}
+
+	[[nodiscard]] bool IfAnimationEnds() const;
+
+	void SetPosition(const glm::vec2& Position) {
+		m_Transform.translation = Position;
+	}
 
 };
 

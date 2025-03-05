@@ -27,10 +27,21 @@ public:
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
 
+	void ChangePositionUp() { m_Transform.translation.y += 20; }
+
+	void ChangePositionDown() { m_Transform.translation.y -= 20; }
+
+	void ChangePositionLeft() { m_Transform.translation.x -= 20; }
+
+	void ChangePositionRight() { m_Transform.translation.x += 20; }
+
     // TODO: Implement the collision detection
     [[nodiscard]] bool IfCollides(const std::shared_ptr<Character>& other) const {
-        (void) other;
-        return false;
+        if(m_Transform.translation.x >= other->GetPosition().x && m_Transform.translation.y >= other->GetPosition().y)
+		{
+			return true;
+		}
+		return false;
     }
 
     // TODO: Add and implement more methods and properties as needed to finish Giraffe Adventure.

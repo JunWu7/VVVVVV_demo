@@ -8,6 +8,7 @@
 #include "Util/Text.hpp"
 #include "PhaseResourceManger.hpp"
 #include "AnimatedCharacter.hpp"
+#include "Player.hpp"
 
 class App {
 public:
@@ -50,6 +51,8 @@ private:
 
     std::shared_ptr<AnimatedCharacter> m_Bee;
     std::shared_ptr<AnimatedCharacter> m_Ball;
+
+    std::shared_ptr<Player> m_Player;
 
     std::shared_ptr<PhaseResourceManger> m_PRM;
 

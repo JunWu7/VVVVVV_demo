@@ -5,7 +5,16 @@
 void App::Start() {
     LOG_TRACE("Start");
 
-    m_Giraffe = std::make_shared<Character>(GA_RESOURCE_DIR"/Image/Character/gray.png");
+    std::vector<std::string> playerImages;
+    playerImages.reserve(1);
+    playerImages.emplace_back(GA_RESOURCE_DIR"/Image/Character/Player.png");
+    m_Player = std::make_shared<Player>(playerImages);
+    m_Player->SetPosition({0, 0});
+    m_Player->SetZIndex(50);
+    m_Player->SetVisible(true);
+    m_Root.AddChild(m_Player);
+
+    /*m_Giraffe = std::make_shared<Character>(GA_RESOURCE_DIR"/Image/Character/giraffe.png");
     m_Giraffe->SetPosition({-112.5f, -140.5f});
     m_Giraffe->SetZIndex(50);
     m_Root.AddChild(m_Giraffe);
@@ -38,8 +47,23 @@ void App::Start() {
 
     // TODO: The counting down ball for phase 6
 
+    std::vector<std::string> ballImages;
+    ballImages.reserve(4);
+    for (int i = 0; i < 3; ++i) {
+        ballImages.emplace_back(GA_RESOURCE_DIR"/Image/Character/ball-" + std::to_string(i + 1) + ".png");
+    }
+    ballImages.emplace_back(GA_RESOURCE_DIR"/Image/Character/ball-OK.png");
+
+    m_Ball = std::make_shared<AnimatedCharacter>(ballImages);
+    m_Ball->SetZIndex(5);
+    m_Ball->SetPosition({ -112.5f, -140.5f });
+    m_Ball->SetVisible(false);
+    m_Root.AddChild(m_Ball);
+
+    //
+
     m_PRM = std::make_shared<PhaseResourceManger>();
-    m_Root.AddChildren(m_PRM->GetChildren());
+    m_Root.AddChildren(m_PRM->GetChildren());*/
 
 
     m_CurrentState = State::UPDATE;
