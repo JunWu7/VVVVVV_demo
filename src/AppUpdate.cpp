@@ -5,27 +5,35 @@
 
 void App::Update() {
 
-    // TODO: Add your own logics to finish the tasks in README.md
-
-	if (abs(m_Player->GetPosition().y) < 540) {
+	if (abs(m_Player->GetPosition().y) < 487.5f) {
 		m_Player->Update();
-
+	}
+	else {
+		m_Player->ChangeFlipAble();
 	}
 
-	// if press space, flip the gravity
-	if (Util::Input::IsKeyPressed(Util::Keycode::SPACE)) {
+	if ((Util::Input::IsKeyPressed(Util::Keycode::SPACE) || Util::Input::IsKeyPressed(Util::Keycode::UP) || Util::Input::IsKeyPressed(Util::Keycode::W)) && m_Player->GetFlipAble() ) {
 		m_Player->FlipGravity();
 		m_Player->Update();
+		m_Player->ChangeFlipAble();
 	}
 
-	// if press left, move left
-	if (Util::Input::IsKeyPressed(Util::Keycode::LEFT)) {
+	if (Util::Input::IsKeyPressed(Util::Keycode::LEFT) || Util::Input::IsKeyPressed(Util::Keycode::A)) {
 		m_Player->Move(false);
 	}
+	else if (Util::Input::IsKeyUp(Util::Keycode::LEFT) || Util::Input::IsKeyPressed(Util::Keycode::A)) {
+		for (int i = 5;i>0;i--) {
+			m_Player->Move(false, i);
+		}
+	}
 
-	// if press right, move right
-	if (Util::Input::IsKeyPressed(Util::Keycode::RIGHT)) {
+	if (Util::Input::IsKeyPressed(Util::Keycode::RIGHT) || Util::Input::IsKeyPressed(Util::Keycode::D)) {
 		m_Player->Move(true);
+	}
+	else if (Util::Input::IsKeyUp(Util::Keycode::RIGHT) || Util::Input::IsKeyPressed(Util::Keycode::D)) {
+		for (int i = 5;i>0;i--) {
+			m_Player->Move(true, i);
+		}
 	}
 
     /*

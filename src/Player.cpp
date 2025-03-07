@@ -6,16 +6,16 @@
 
 void Player::Update() {
     if (isGravityFlipped) {
-        m_Transform.translation.y -= 10;
+        m_Transform.translation.y -= 15;
     } else {
-        m_Transform.translation.y += 10;
+        m_Transform.translation.y += 15;
     }
 }
 
-void Player::Move(bool isRight) {
+void Player::Move(bool isRight, int speed) {
     if (isRight) {
-        m_Transform.translation.x += 10;
+        m_Transform.translation.x += speed;
     } else {
-        m_Transform.translation.x -= 10;
+        m_Transform.translation.x -= speed;
     }
 }

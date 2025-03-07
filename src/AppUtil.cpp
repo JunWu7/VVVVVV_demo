@@ -11,8 +11,8 @@
 void App::ValidTask() {
     bool isBeeLooping;
     bool isBeePlaying;
-    LOG_DEBUG("Validating the task {}", static_cast<int>(m_Phase));
-    switch (m_Phase) {
+    // LOG_DEBUG("Validating the task {}", static_cast<int>(m_Phase));
+    /*switch (m_Phase) {
         case Phase::CHANGE_CHARACTER_IMAGE:
             if (m_Giraffe->GetImagePath() == GA_RESOURCE_DIR"/Image/Character/giraffe.png") {
                 m_Phase = Phase::ABLE_TO_MOVE;
@@ -91,5 +91,5 @@ void App::ValidTask() {
                 LOG_DEBUG("The ball animation is not ended");
             }
             break;
-    }
+    }*/
 }

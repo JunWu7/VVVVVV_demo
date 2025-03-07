@@ -63,8 +63,8 @@ void App::Start() {
     //
 
     m_PRM = std::make_shared<PhaseResourceManger>();
-    m_Root.AddChildren(m_PRM->GetChildren());*/
-
+    m_Root.AddChildren(m_PRM->GetChildren());
+    */
 
     m_CurrentState = State::UPDATE;
 }

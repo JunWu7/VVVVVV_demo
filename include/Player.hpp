@@ -11,6 +11,7 @@
 class Player : public AnimatedCharacter {
 private:
     bool isGravityFlipped = false;
+    bool isFlipAble = true;
 
 public:
     // Constructor
@@ -21,9 +22,11 @@ public:
 
     // Method
     void FlipGravity() { isGravityFlipped = !isGravityFlipped; }
+    void ChangeFlipAble() { isFlipAble = !isFlipAble; }
     void Update();
-    void Move(bool isRight);
+    void Move(bool isRight, int speed = 10);
     [[nodiscard]] const glm::vec2& GetPosition() const { return m_Transform.translation; }
-    
+
+    bool GetFlipAble() { return isFlipAble; };
 };
 #endif //PLAYER_HPP
