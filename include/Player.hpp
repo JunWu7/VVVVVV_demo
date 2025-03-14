@@ -22,11 +22,19 @@ public:
 
     // Method
     void FlipGravity() { isGravityFlipped = !isGravityFlipped; }
+
     void ChangeFlipAble() { isFlipAble = !isFlipAble; }
+
     void Update();
+
     void Move(bool isRight, int speed = 10);
+
     [[nodiscard]] const glm::vec2& GetPosition() const { return m_Transform.translation; }
 
     bool GetFlipAble() { return isFlipAble; };
+
+    void isTouchHeightWall();
+
+    void isTouchWidthWall();
 };
 #endif //PLAYER_HPP

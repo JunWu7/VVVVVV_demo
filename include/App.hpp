@@ -9,6 +9,7 @@
 #include "PhaseResourceManger.hpp"
 #include "AnimatedCharacter.hpp"
 #include "Player.hpp"
+#include "LevelManager.hpp"
 
 class App {
 public:
@@ -56,6 +57,7 @@ private:
     std::shared_ptr<Player> m_Player;
 
     // std::shared_ptr<PhaseResourceManger> m_PRM;
+    std::shared_ptr<LevelManager> m_LM;
 
     bool m_EnterDown = false;
 };

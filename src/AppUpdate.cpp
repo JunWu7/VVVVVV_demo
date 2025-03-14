@@ -5,17 +5,22 @@
 
 void App::Update() {
 
-	if (abs(m_Player->GetPosition().y) < 487.5f) {
-		m_Player->Update();
-	}
-	else {
-		m_Player->ChangeFlipAble();
-	}
+	// if (abs(m_Player->GetPosition().y) < 487.5f) {
+	// 	m_Player->Update();
+	// }
+	// else {
+	// 	m_Player->ChangeFlipAble();
+	// }
 
-	if ((Util::Input::IsKeyPressed(Util::Keycode::SPACE) || Util::Input::IsKeyPressed(Util::Keycode::UP) || Util::Input::IsKeyPressed(Util::Keycode::W)) && m_Player->GetFlipAble() ) {
+	m_Player->Update();
+	m_Player->isTouchHeightWall();
+	m_Player->isTouchWidthWall();
+
+	if ((Util::Input::IsKeyDown(Util::Keycode::SPACE) ||Util::Input::IsKeyDown(Util::Keycode::UP) ||
+		Util::Input::IsKeyDown(Util::Keycode::W)) && m_Player->GetFlipAble() ) {
 		m_Player->FlipGravity();
 		m_Player->Update();
-		m_Player->ChangeFlipAble();
+		// m_Player->ChangeFlipAble();
 	}
 
 	if (Util::Input::IsKeyPressed(Util::Keycode::LEFT) || Util::Input::IsKeyPressed(Util::Keycode::A)) {
