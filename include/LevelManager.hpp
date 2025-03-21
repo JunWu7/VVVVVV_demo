@@ -6,15 +6,16 @@
 #define LEVELMANAGER_HPP
 
 #include "Util/GameObject.hpp"
-#include "Util/Image.hpp"
+#include "Image.hpp"
 
-//create an interface for the level
 class LevelManager : public Util::GameObject {
 public:
-    LevelManager()  : GameObject(
-        std::make_unique<Util::Image>(GA_RESOURCE_DIR"/Image/Background/1.Welcome Aboard.png"), -10) {
+    LevelManager();
 
+    [[nodiscard]] std::vector<std::shared_ptr<Util::GameObject>> TakeChildren() const {
+        return {m_Level, m_Background};
     }
+
     bool isOnTheGround();
 
     void isTouchRightWall();
@@ -40,8 +41,8 @@ public:
     void setTrap();
 
 private:
-    std::shared_ptr<Util::Image> m_Background;
-    std::shared_ptr<Util::Image> m_Level;
+    std::shared_ptr<Image> m_Background;
+    std::shared_ptr<Image> m_Level;
 
 
 };

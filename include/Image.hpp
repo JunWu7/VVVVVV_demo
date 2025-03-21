@@ -8,7 +8,7 @@ class Image : public Util::GameObject {
 
 public:
     Image(std::string Path, float index) : GameObject(
-        std::make_unique<Util::Image>(GA_RESOURCE_DIR + Path), index) {
+        std::make_unique<Util::Image>(std::string(GA_RESOURCE_DIR) + "/Image/Background/" + Path + ".png"), index) {
     }
 
     void ChangeImage(std::string Path) {
@@ -17,6 +17,9 @@ public:
     }
 
 private:
+    inline std::string ImagePath(std::string Path) {
+        return GA_RESOURCE_DIR"/Image/Background/" + Path + ".png";
+    }
 };
 
 #endif //IMAGE_HPP

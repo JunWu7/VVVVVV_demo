@@ -4,6 +4,13 @@
 
 #include "LevelManager.hpp"
 
+#include "BackgroundImage.hpp"
+
+LevelManager::LevelManager() {
+    m_Background = std::make_shared<Image>("1.Welcome Aboard_back", -10);
+    m_Level = std::make_shared<Image>("1.Welcome Aboard_withnote", -10);
+}
+
 bool LevelManager::isOnTheGround() {
     return false;
 }

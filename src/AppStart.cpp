@@ -14,6 +14,9 @@ void App::Start() {
     m_Player->SetVisible(true);
     m_Root.AddChild(m_Player);
 
+    m_LM = std::make_shared<LevelManager>();
+    m_Root.AddChildren(m_LM->TakeChildren());
+
     /*m_Giraffe = std::make_shared<Character>(GA_RESOURCE_DIR"/Image/Character/giraffe.png");
     m_Giraffe->SetPosition({-112.5f, -140.5f});
     m_Giraffe->SetZIndex(50);

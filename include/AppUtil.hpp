@@ -13,4 +13,8 @@
     GA_RESOURCE_DIR"/Image/Character/door_open.png"; });
 }
 
+// [[nodiscard]]inline FixPath(std::string Path) {
+//     return GA_RESOURCE_DIR"/Image/Background/" + Path + ".png";
+// }
+
 #endif //APP_UTIL_HPP

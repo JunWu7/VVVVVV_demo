@@ -5,6 +5,7 @@
 
 void App::Update() {
 	m_Player->Update();
+
 	if (m_Player->isTouchUpWall()) {
 		m_LM->isTouchUpWall();
 	}
