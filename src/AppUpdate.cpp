@@ -4,17 +4,19 @@
 #include "Util/Keycode.hpp"
 
 void App::Update() {
-
-	// if (abs(m_Player->GetPosition().y) < 487.5f) {
-	// 	m_Player->Update();
-	// }
-	// else {
-	// 	m_Player->ChangeFlipAble();
-	// }
-
 	m_Player->Update();
-	m_Player->isTouchHeightWall();
-	m_Player->isTouchWidthWall();
+	if (m_Player->isTouchUpWall()) {
+		m_LM->isTouchUpWall();
+	}
+	if (m_Player->isTouchDownWall()) {
+		m_LM->isTouchDownWall();
+	}
+	if (m_Player->isTouchLeftWall()) {
+		m_LM->isTouchLeftWall();
+	}
+	if (m_Player->isTouchRightWall()) {
+		m_LM->isTouchRightWall();
+	}
 
 	if ((Util::Input::IsKeyDown(Util::Keycode::SPACE) ||Util::Input::IsKeyDown(Util::Keycode::UP) ||
 		Util::Input::IsKeyDown(Util::Keycode::W)) && m_Player->GetFlipAble() ) {

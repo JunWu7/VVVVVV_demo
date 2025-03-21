@@ -17,13 +17,19 @@ public:
     }
     bool isOnTheGround();
 
-    void touchWall();
+    void isTouchRightWall();
 
-    void touchSavePoint();
+    void isTouchLeftWall();
 
-    void touchEnemy();
+    void isTouchUpWall();
 
-    void touchTrap();
+    void isTouchDownWall();
+
+    void isTouchSavePoint();
+
+    void isTouchEnemy();
+
+    void isTouchTrap();
 
     void setBackGround(std::string);
 

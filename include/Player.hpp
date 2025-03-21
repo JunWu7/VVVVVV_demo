@@ -33,8 +33,12 @@ public:
 
     bool GetFlipAble() { return isFlipAble; };
 
-    void isTouchHeightWall();
+    bool isTouchRightWall();
 
-    void isTouchWidthWall();
+    bool isTouchLeftWall();
+
+    bool isTouchUpWall();
+
+    bool isTouchDownWall();
 };
 #endif //PLAYER_HPP

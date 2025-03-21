@@ -20,24 +20,38 @@ void Player::Move(bool isRight, int speed) {
     }
 }
 
-void Player::isTouchHeightWall() {
-    if (abs(m_Transform.translation.y) >= 540) {
+bool Player::isTouchUpWall() {
+    if (m_Transform.translation.y >= 540) {
         m_Transform.translation.y *= -1;
-        if (m_Transform.translation.y > 0) {
-            m_Transform.translation.y -= 10;
-        } else {
-            m_Transform.translation.y += 10;
-        }
+        m_Transform.translation.y += 10;
+        return true;
     }
+    return false;
 }
 
-void Player::isTouchWidthWall() {
-    if (abs(m_Transform.translation.x) >= 640) {
-        m_Transform.translation.x *= -1;
-        if (m_Transform.translation.x > 0) {
-            m_Transform.translation.x -= 10;
-        } else {
-            m_Transform.translation.x += 10;
-        }
+bool Player::isTouchDownWall() {
+    if (m_Transform.translation.y <= -540) {
+        m_Transform.translation.y *= -1;
+        m_Transform.translation.y -= 10;
+        return true;
     }
+    return false;
+}
+
+bool Player::isTouchLeftWall() {
+    if (m_Transform.translation.x <= -640) {
+        m_Transform.translation.x *= -1;
+        m_Transform.translation.x -= 10;
+        return true;
+    }
+    return false;
+}
+
+bool Player::isTouchRightWall() {
+    if (m_Transform.translation.x >= 640) {
+        m_Transform.translation.x *= -1;
+        m_Transform.translation.x += 10;
+        return true;
+    }
+    return false;
 }
