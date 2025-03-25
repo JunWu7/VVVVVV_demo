@@ -4,7 +4,9 @@
 #include "Util/Keycode.hpp"
 
 void App::Update() {
-	m_Player->Update();
+	if (!m_LM->isOnTheGround(m_Player->GetPosition())) {
+		m_Player->Update();
+	}
 
 	if (m_Player->isTouchUpWall()) {
 		m_LM->isTouchUpWall();
@@ -19,8 +21,12 @@ void App::Update() {
 		m_LM->isTouchRightWall();
 	}
 
-	if ((Util::Input::IsKeyDown(Util::Keycode::SPACE) ||Util::Input::IsKeyDown(Util::Keycode::UP) ||
-		Util::Input::IsKeyDown(Util::Keycode::W)) && m_Player->GetFlipAble() ) {
+	if ((Util::Input::IsKeyDown(Util::Keycode::SPACE) ||
+		Util::Input::IsKeyDown(Util::Keycode::UP) ||
+		Util::Input::IsKeyDown(Util::Keycode::DOWN) ||
+		Util::Input::IsKeyDown(Util::Keycode::W) ||
+		Util::Input::IsKeyDown(Util::Keycode::S)) &&
+		m_Player->GetFlipAble() ) {
 		m_Player->FlipGravity();
 		m_Player->Update();
 		// m_Player->ChangeFlipAble();

@@ -16,7 +16,7 @@ public:
         return {m_Level, m_Background};
     }
 
-    bool isOnTheGround();
+    bool isOnTheGround(const glm::vec2& position);
 
     void isTouchRightWall();
 
@@ -32,19 +32,18 @@ public:
 
     void isTouchTrap();
 
-    void setBackGround(std::string);
+    int getLevel();
+
+private:
+    std::shared_ptr<Image> m_Background;
+    std::shared_ptr<Image> m_Level;
+    std::vector<bool> walkableMask;
 
     void setLevel(std::string);
 
     void setSavePoint();
 
     void setTrap();
-
-private:
-    std::shared_ptr<Image> m_Background;
-    std::shared_ptr<Image> m_Level;
-
-
 };
 
 #endif //LEVELMANAGER_HPP

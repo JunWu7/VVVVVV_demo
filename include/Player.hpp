@@ -40,5 +40,6 @@ public:
     bool isTouchUpWall();
 
     bool isTouchDownWall();
+
 };
 #endif //PLAYER_HPP
