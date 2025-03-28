@@ -6,8 +6,8 @@
 LevelInfoTable::LevelInfoTable() {
     // WelcomeAboard 關卡資料
     levelMap[LevelID::WelcomeAboard] = LevelData{
-        "1.Welcome_Aboard_withnote",        // 圖片檔名
-        "1.Welcome_Aboard_background",      // 背景圖片檔名
+        "1.WelcomeAboardWithNote",        // 圖片檔名
+        "1.WelcomeAboardBackground",      // 背景圖片檔名
         LevelID::WelcomeAboard,
         LevelID::WelcomeAboard,
         LevelID::WelcomeAboard,
@@ -21,7 +21,7 @@ LevelInfoTable::LevelInfoTable() {
     // Conundrum 關卡資料
     levelMap[LevelID::Conundrum] = LevelData{
         "2.Conundrum",
-        "2.Conundrum_background",
+        "2.ConundrumBackground",
         LevelID::Conundrum,
         LevelID::Conundrum,
         LevelID::WelcomeAboard,
@@ -35,7 +35,7 @@ LevelInfoTable::LevelInfoTable() {
     // Solitude 關卡資料
     levelMap[LevelID::Solitude] = LevelData{
         "3.Solitude",
-        "3.Solitude_background",
+        "3.SolitudeBackground",
         LevelID::LeapOfFaith,
         LevelID::Conundrum,
         LevelID::Conundrum,
@@ -48,8 +48,8 @@ LevelInfoTable::LevelInfoTable() {
 
     // LeapOfFaith 關卡資料
     levelMap[LevelID::LeapOfFaith] = LevelData{
-        "4.Leap_of_Faith",
-        "4.Leap_of_Faith_background",
+        "4.LeapOfFaith",
+        "LeapOfFaithBackground",
         LevelID::TrafficJam,
         LevelID::Solitude,
         LevelID::Conundrum,
@@ -62,8 +62,8 @@ LevelInfoTable::LevelInfoTable() {
 
     // TrafficJam 關卡資料
     levelMap[LevelID::TrafficJam] = LevelData{
-        "5.Traffic_Jam",
-        "5.Traffic_Jam_background",
+        "5.TrafficJam",
+        "5.TrafficJamBackground",
         LevelID::TrafficJam,
         LevelID::LeapOfFaith,
         LevelID::TrafficJam,
