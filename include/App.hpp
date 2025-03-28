@@ -59,7 +59,7 @@ private:
     // std::shared_ptr<PhaseResourceManger> m_PRM;
     std::shared_ptr<LevelManager> m_LM;
 
-    bool m_EnterDown = false;
+    bool fallAble = false;
 };
 
 #endif

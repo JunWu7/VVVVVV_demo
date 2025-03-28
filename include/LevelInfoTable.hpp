@@ -44,6 +44,10 @@ enum class LevelID {
 struct LevelData {
     std::string imageName;                // 主場景圖片
     std::string backgroundName;           // 背景圖片
+    LevelID upWall;
+    LevelID downWall;
+    LevelID leftWall;
+    LevelID rightWall;
     bool hasTraps;                        // 是否有陷阱
     bool hasEnemies;                      // 是否有敵人
     std::vector<glm::vec2> trapPositions; // 陷阱位置陣列
@@ -54,7 +58,7 @@ struct LevelData {
 class LevelInfoTable {
 public:
     LevelInfoTable();                              // 建構子：初始化所有關卡資料
-    const LevelData& Get(LevelID id) const;        // 查詢特定關卡資料
+    const LevelData& GetLevelData(LevelID id) const;        // 查詢特定關卡資料
 
 private:
     std::unordered_map<LevelID, LevelData> levelMap; // 關卡資料表

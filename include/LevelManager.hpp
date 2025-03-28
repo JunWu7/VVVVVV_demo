@@ -7,6 +7,7 @@
 
 #include "Util/GameObject.hpp"
 #include "Image.hpp"
+#include "LevelInfoTable.hpp"
 
 class LevelManager : public Util::GameObject {
 public:
@@ -32,14 +33,14 @@ public:
 
     void isTouchTrap();
 
-    int getLevel();
-
 private:
-    std::shared_ptr<Image> m_Background;
     std::shared_ptr<Image> m_Level;
+    std::shared_ptr<Image> m_Background;
     std::vector<bool> walkableMask;
+    std::shared_ptr<LevelInfoTable> m_LevelInfoTable;
+    LevelData levelData;
 
-    void setLevel(std::string);
+    void setLevel();
 
     void setSavePoint();
 

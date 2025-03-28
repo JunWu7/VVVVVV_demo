@@ -13,7 +13,7 @@ public:
 
     void ChangeImage(std::string Path) {
         auto temp = std::dynamic_pointer_cast<Util::Image>(m_Drawable);
-        temp->SetImage(GA_RESOURCE_DIR + Path + ".png");
+        temp->SetImage(GA_RESOURCE_DIR"/Image/Background/" + Path + ".png");
     }
 
 private:

@@ -4,7 +4,8 @@
 #include "Util/Keycode.hpp"
 
 void App::Update() {
-	if (!m_LM->isOnTheGround(m_Player->GetPosition())) {
+
+	if (!m_LM->isOnTheGround(m_Player->GetPosition()) && !fallAble) {
 		m_Player->Update();
 	}
 
@@ -16,9 +17,11 @@ void App::Update() {
 	}
 	if (m_Player->isTouchLeftWall()) {
 		m_LM->isTouchLeftWall();
+		m_Player->Move(false);
 	}
 	if (m_Player->isTouchRightWall()) {
 		m_LM->isTouchRightWall();
+		m_Player->Move(true);
 	}
 
 	if ((Util::Input::IsKeyDown(Util::Keycode::SPACE) ||
@@ -48,6 +51,10 @@ void App::Update() {
 		for (int i = 5;i>0;i--) {
 			m_Player->Move(true, i);
 		}
+	}
+
+	if (Util::Input::IsKeyDown(Util::Keycode::N)) {
+		fallAble = !fallAble;
 	}
 
     /*
