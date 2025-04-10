@@ -49,7 +49,7 @@ LevelInfoTable::LevelInfoTable() {
     // LeapOfFaith 關卡資料
     levelMap[LevelID::LeapOfFaith] = LevelData{
         "4.LeapOfFaith",
-        "LeapOfFaithBackground",
+        "4.LeapOfFaithBackground",
         LevelID::TrafficJam,
         LevelID::Solitude,
         LevelID::Conundrum,
