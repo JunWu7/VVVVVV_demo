@@ -22,17 +22,15 @@ void Player::Move(bool isRight, int speed) {
 
 bool Player::isTouchUpWall() {
     if (m_Transform.translation.y >= 475) {
-        m_Transform.translation.y *= -1;
-        m_Transform.translation.y += 10;
+        m_Transform.translation.y = -377.5;
         return true;
     }
     return false;
 }
 
 bool Player::isTouchDownWall() {
-    if (m_Transform.translation.y <= -475) {
-        m_Transform.translation.y *= -1;
-        m_Transform.translation.y -= 10;
+    if (m_Transform.translation.y <= -387.5) {
+        m_Transform.translation.y = 465;
         return true;
     }
     return false;
