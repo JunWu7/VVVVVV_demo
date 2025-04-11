@@ -40,11 +40,18 @@ private:
     std::shared_ptr<LevelInfoTable> m_LevelInfoTable;
     LevelData levelData;
 
+    int imageWidth = 1280;
+    int imageHeight = 915;
+
     void setLevel();
 
     void setSavePoint();
 
     void setTrap();
+
+    void setWalkableMask();
+
+    glm::ivec2 WorldToImageCoords(float wx, float wy);
 };
 
 #endif //LEVELMANAGER_HPP
