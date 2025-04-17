@@ -5,9 +5,19 @@
 
 void App::Update() {
 
-	if (!m_LM->isOnTheGround(m_Player->GetPosition()) && !fallAble) {
-		m_Player->Update();
+	if (m_Player->GetGravityFlipped()) {
+		if (m_LM->isMoveAble(m_Player->GetPosition(), false, true) && !fallAble) {
+			m_Player->Update();
+		}
+		m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), false, true)));
 	}
+	else {
+		if (m_LM->isMoveAble(m_Player->GetPosition(), true, true) && !fallAble) {
+			m_Player->Update();
+		}
+		m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), true, true)));
+	}
+
 
 	if (m_Player->isTouchUpWall()) {
 		m_LM->isTouchUpWall();
@@ -36,20 +46,34 @@ void App::Update() {
 	}
 
 	if (Util::Input::IsKeyPressed(Util::Keycode::LEFT) || Util::Input::IsKeyPressed(Util::Keycode::A)) {
-		m_Player->Move(false);
+		if (m_LM->isMoveAble(m_Player->GetPosition(), false, false)) {
+			m_Player->Move(false);
+		}
 	}
-	else if (Util::Input::IsKeyUp(Util::Keycode::LEFT) || Util::Input::IsKeyPressed(Util::Keycode::A)) {
+	else if (Util::Input::IsKeyUp(Util::Keycode::LEFT) || Util::Input::IsKeyUp(Util::Keycode::A)) {
 		for (int i = 5;i>0;i--) {
-			m_Player->Move(false, i);
+			if (m_LM->isMoveAble(m_Player->GetPosition(), false * i, false)) {
+				m_Player->Move(false, i);
+			}
+			else {
+				break;
+			}
 		}
 	}
 
 	if (Util::Input::IsKeyPressed(Util::Keycode::RIGHT) || Util::Input::IsKeyPressed(Util::Keycode::D)) {
-		m_Player->Move(true);
+		if (m_LM->isMoveAble(m_Player->GetPosition(), true, false)) {
+			m_Player->Move(true);
+		}
 	}
-	else if (Util::Input::IsKeyUp(Util::Keycode::RIGHT) || Util::Input::IsKeyPressed(Util::Keycode::D)) {
+	else if (Util::Input::IsKeyUp(Util::Keycode::RIGHT) || Util::Input::IsKeyUp(Util::Keycode::D)) {
 		for (int i = 5;i>0;i--) {
-			m_Player->Move(true, i);
+			if (m_LM->isMoveAble(m_Player->GetPosition(), true, false)) {
+				m_Player->Move(true, i);
+			}
+			else {
+				break;
+			}
 		}
 	}
 

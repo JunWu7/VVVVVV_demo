@@ -8,6 +8,7 @@
 #include "Util/GameObject.hpp"
 #include "Image.hpp"
 #include "LevelInfoTable.hpp"
+#include <unordered_map>
 
 class LevelManager : public Util::GameObject {
 public:
@@ -17,7 +18,7 @@ public:
         return {m_Level, m_Background};
     }
 
-    bool isOnTheGround(const glm::vec2& position);
+    bool isMoveAble(const glm::vec2& position, bool isIncrement, bool isVertical);
 
     void isTouchRightWall();
 
@@ -33,9 +34,12 @@ public:
 
     void isTouchTrap();
 
+    void preloadAllWalkableMasks(const LevelInfoTable& infoTable);
+
 private:
     std::shared_ptr<Image> m_Level;
     std::shared_ptr<Image> m_Background;
+    std::unordered_map<LevelID, std::vector<bool>> walkableMaskMap;
     std::vector<bool> walkableMask;
     std::shared_ptr<LevelInfoTable> m_LevelInfoTable;
     LevelData levelData;
@@ -49,9 +53,9 @@ private:
 
     void setTrap();
 
-    void setWalkableMask();
+    void setWalkableMask(LevelID levelId);
 
-    glm::ivec2 WorldToImageCoords(float wx, float wy);
+    glm::ivec2 WorldToImageCoords(float wx, float wy) const;
 };
 
 #endif //LEVELMANAGER_HPP

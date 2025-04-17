@@ -23,7 +23,9 @@ public:
     // Method
     void FlipGravity() { isGravityFlipped = !isGravityFlipped; }
 
-    void ChangeFlipAble() { isFlipAble = !isFlipAble; }
+    bool GetGravityFlipped() { return isGravityFlipped; }
+
+    void SetFlipAble(bool flipAble) { isFlipAble = flipAble; }
 
     void Update();
 
