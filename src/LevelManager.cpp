@@ -25,25 +25,25 @@ bool LevelManager::isMoveAble(const glm::vec2& position, bool isIncrement, bool 
     glm::ivec2 imageCoord = WorldToImageCoords(position.x, position.y);
     if (isVertical) {
         if (isIncrement) {
-            imageCoord.y += 61;
+            imageCoord.y += 47;
         } else {
-            imageCoord.y -= 61;
+            imageCoord.y -= 47;
         }
         if ((imageCoord.y >= 915 || imageCoord.y <= 0)) {
             return true;
         }
         return (walkableMask[imageCoord.y * imageWidth + imageCoord.x] && walkableMask[imageCoord.y * imageWidth + (imageCoord.x + 15)] && walkableMask[imageCoord.y * imageWidth + (imageCoord.x - 15)]);
+    }
+    if (isIncrement) {
+        imageCoord.x += 25;
     } else {
-        if (isIncrement) {
-            imageCoord.x += 30;
-        } else {
-            imageCoord.x -= 30;
-        }
+        imageCoord.x -= 25;
+    }
         // if ((imageCoord.x <= 30 || imageCoord.x >= 1250)) {
         //     return true;
         // }
-        return (walkableMask[imageCoord.y * imageWidth + imageCoord.x] && walkableMask[(imageCoord.y + 31) * imageWidth + imageCoord.x] && walkableMask[(imageCoord.y - 31) * imageWidth + imageCoord.x]);
-    }
+    return (walkableMask[imageCoord.y * imageWidth + imageCoord.x] && walkableMask[(imageCoord.y + 18) * imageWidth + imageCoord.x] && walkableMask[(imageCoord.y - 18) * imageWidth + imageCoord.x]);
+
 }
 
 void LevelManager::isTouchUpWall() {

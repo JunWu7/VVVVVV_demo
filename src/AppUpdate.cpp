@@ -51,7 +51,7 @@ void App::Update() {
 		}
 	}
 	else if (Util::Input::IsKeyUp(Util::Keycode::LEFT) || Util::Input::IsKeyUp(Util::Keycode::A)) {
-		for (int i = 5;i>0;i--) {
+		for (int i = 4;i>0;i--) {
 			if (m_LM->isMoveAble(m_Player->GetPosition(), false * i, false)) {
 				m_Player->Move(false, i);
 			}
@@ -67,7 +67,7 @@ void App::Update() {
 		}
 	}
 	else if (Util::Input::IsKeyUp(Util::Keycode::RIGHT) || Util::Input::IsKeyUp(Util::Keycode::D)) {
-		for (int i = 5;i>0;i--) {
+		for (int i = 4;i>0;i--) {
 			if (m_LM->isMoveAble(m_Player->GetPosition(), true, false)) {
 				m_Player->Move(true, i);
 			}

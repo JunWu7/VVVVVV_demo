@@ -7,7 +7,7 @@ void App::Start() {
 
     std::vector<std::string> playerImages;
     playerImages.reserve(1);
-    playerImages.emplace_back(GA_RESOURCE_DIR"/Image/Character/Player.png");
+    playerImages.emplace_back(GA_RESOURCE_DIR"/Image/Character/playerNew.png");
     m_Player = std::make_shared<Player>(playerImages);
     m_Player->SetPosition({0, 0});
     m_Player->SetZIndex(50);
@@ -47,8 +47,6 @@ void App::Start() {
         m_Doors[i]->SetVisible(false);
         m_Root.AddChild(m_Doors[i]);
     }
-
-    // TODO: The counting down ball for phase 6
 
     std::vector<std::string> ballImages;
     ballImages.reserve(4);
