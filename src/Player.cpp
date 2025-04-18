@@ -37,7 +37,7 @@ bool Player::isTouchDownWall() {
 }
 
 bool Player::isTouchLeftWall() {
-    if (m_Transform.translation.x <= -640) {
+    if (m_Transform.translation.x <= -610) {
         m_Transform.translation.x *= -1;
         m_Transform.translation.x -= 10;
         return true;
@@ -46,7 +46,7 @@ bool Player::isTouchLeftWall() {
 }
 
 bool Player::isTouchRightWall() {
-    if (m_Transform.translation.x >= 640) {
+    if (m_Transform.translation.x >= 610) {
         m_Transform.translation.x *= -1;
         m_Transform.translation.x += 10;
         return true;

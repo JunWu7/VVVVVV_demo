@@ -29,7 +29,7 @@ public:
 
     void Update();
 
-    void Move(bool isRight, int speed = 10);
+    void Move(bool isRight, int speed = 15);
 
     [[nodiscard]] const glm::vec2& GetPosition() const { return m_Transform.translation; }
 

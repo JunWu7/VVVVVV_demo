@@ -39,9 +39,9 @@ bool LevelManager::isMoveAble(const glm::vec2& position, bool isIncrement, bool 
         } else {
             imageCoord.x -= 30;
         }
-        if ((imageCoord.x <= 30 || imageCoord.x >= 1250)) {
-            return true;
-        }
+        // if ((imageCoord.x <= 30 || imageCoord.x >= 1250)) {
+        //     return true;
+        // }
         return (walkableMask[imageCoord.y * imageWidth + imageCoord.x] && walkableMask[(imageCoord.y + 31) * imageWidth + imageCoord.x] && walkableMask[(imageCoord.y - 31) * imageWidth + imageCoord.x]);
     }
 }
