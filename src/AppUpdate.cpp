@@ -42,17 +42,24 @@ void App::Update() {
 		m_Player->GetFlipAble() ) {
 		m_Player->FlipGravity();
 		m_Player->Update();
-		// m_Player->ChangeFlipAble();
 	}
 
 	if (Util::Input::IsKeyPressed(Util::Keycode::LEFT) || Util::Input::IsKeyPressed(Util::Keycode::A)) {
-		if (m_LM->isMoveAble(m_Player->GetPosition(), false, false)) {
-			m_Player->Move(false);
+		// if (m_LM->isMoveAble(m_Player->GetPosition(), false, false)) {
+		// 	m_Player->Move(false);
+		// }
+		for (int i = 6;i>0;i--) {
+			if (m_LM->isMoveAble(m_Player->GetPosition(), false, false)) {
+				m_Player->Move(false, 2);
+			}
+			else {
+				break;
+			}
 		}
 	}
 	else if (Util::Input::IsKeyUp(Util::Keycode::LEFT) || Util::Input::IsKeyUp(Util::Keycode::A)) {
 		for (int i = 4;i>0;i--) {
-			if (m_LM->isMoveAble(m_Player->GetPosition(), false * i, false)) {
+			if (m_LM->isMoveAble(m_Player->GetPosition(), false, false)) {
 				m_Player->Move(false, i);
 			}
 			else {
@@ -62,8 +69,16 @@ void App::Update() {
 	}
 
 	if (Util::Input::IsKeyPressed(Util::Keycode::RIGHT) || Util::Input::IsKeyPressed(Util::Keycode::D)) {
-		if (m_LM->isMoveAble(m_Player->GetPosition(), true, false)) {
-			m_Player->Move(true);
+		// if (m_LM->isMoveAble(m_Player->GetPosition(), true, false)) {
+		// 	m_Player->Move(true);
+		// }
+		for (int i = 6;i>0;i--) {
+			if (m_LM->isMoveAble(m_Player->GetPosition(), true, false)) {
+				m_Player->Move(true, 2);
+			}
+			else {
+				break;
+			}
 		}
 	}
 	else if (Util::Input::IsKeyUp(Util::Keycode::RIGHT) || Util::Input::IsKeyUp(Util::Keycode::D)) {
@@ -79,6 +94,15 @@ void App::Update() {
 
 	if (Util::Input::IsKeyDown(Util::Keycode::N)) {
 		fallAble = !fallAble;
+	}
+
+	//if player is touching the trap, set the game to the start
+	if (m_LM->isTouchTrap(m_Player->GetPosition())) {
+		m_Player->SetPosition({0, 0});
+		if (m_Player->GetGravityFlipped()) {
+			m_Player->FlipGravity();
+		}
+		m_LM->setLevelDataByID(LevelID::WelcomeAboard);
 	}
 
     /*
