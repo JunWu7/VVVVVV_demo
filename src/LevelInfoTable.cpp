@@ -15,6 +15,7 @@ LevelInfoTable::LevelInfoTable() {
         false,                              // 沒有陷阱
         false,                              // 有敵人
         {},                                 // 無陷阱位置
+        {},
         {}  // 敵人位置
     };
 
@@ -30,7 +31,7 @@ LevelInfoTable::LevelInfoTable() {
         false,
         {{-201, -303}, {-151, -303}, {-101, -303}, {-51, -303},{-1, -303},
             {49, -303}, {99, -303}, {149, -303}, {199, -303}},
-{},
+        {},
         {}
     };
 
@@ -45,7 +46,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -60,7 +61,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -75,7 +76,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -90,7 +91,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {{-70, -303}, {-25, -303}, {20, -303}, {65, -303}, {110, -303},{155, -303}},
-{{-300, 360},{-253.125, 360},{-206.25, 360},{-159.375,360},{-112.5, 360},
+        {{-300, 360},{-253.125, 360},{-206.25, 360},{-159.375,360},{-112.5, 360},
             {-65.625, 360},{-18.75, 360},{28.125, 360},{75, 360}},
         {}
     };
@@ -105,10 +106,12 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::ItsASecretToNobody,
         true,
         false,
-        {},
-{},
+        {{-430, -175},{-390, -175},{-350, -175},{-140, -175},
+            {-100, -175},{-60, -175},{-20, -175},{20, -175},{60, -175}},
+        {{-300, 136},{-255, 136},{-210, 136},{-165, 136},{-120, 136},{80, 136}, {125, 136}, {170, 136}},
         {}
     };
+    // {-460, -175}
 
     // LinearCollider
     levelMap[LevelID::LinearCollider] = LevelData{
@@ -121,7 +124,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -136,7 +139,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -151,7 +154,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -166,7 +169,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -181,7 +184,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -196,7 +199,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -211,7 +214,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -226,7 +229,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -241,7 +244,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -256,7 +259,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -271,7 +274,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -286,7 +289,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -301,7 +304,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -316,7 +319,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -331,7 +334,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -346,7 +349,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -361,7 +364,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 
@@ -376,7 +379,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
-{},
+        {},
         {}
     };
 

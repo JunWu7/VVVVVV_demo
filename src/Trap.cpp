@@ -16,13 +16,6 @@ Trap::Trap(const glm::vec2& pos, bool isReverse)
 
 bool Trap::IsTouchTrap(const glm::vec2& playerPos)
 {
-    // if (playerPos.x - 20 <= m_Transform.translation.x - 16 &&
-    //     playerPos.x + 20 >= m_Transform.translation.x + 16 &&
-    //     m_Transform.translation.y >= playerPos.y)
-    // {
-    //     return true;
-    // }
-    // return false;
     return std::abs(playerPos.x - m_Transform.translation.x) * 2 < (40 + 49) &&
            std::abs(playerPos.y - m_Transform.translation.y) * 2 < (82 + 52);
 }
