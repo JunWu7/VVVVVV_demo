@@ -104,6 +104,9 @@ void LevelManager::setTrap() {
     for (const auto& pos : levelData.trapPositions) {
         m_Traps.push_back(std::make_shared<Trap>(pos));
     }
+    for (const auto& pos : levelData.trapReversePositions) {
+        m_Traps.push_back(std::make_shared<Trap>(pos, true));
+    }
     for (const auto& trap : m_Traps) {
         trap->SetZIndex(0);
         trap->SetVisible(true);

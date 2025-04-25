@@ -4,8 +4,12 @@
 
 #include "Trap.hpp"
 
-Trap::Trap(const glm::vec2& pos)
-    : Character(std::string(GA_RESOURCE_DIR) + "/Image/Background/Spike.png")
+Trap::Trap(const glm::vec2& pos, bool isReverse)
+    : Character(
+        std::string(GA_RESOURCE_DIR) +
+        (isReverse ? "/Image/Background/SpikeReverse.png"
+                   : "/Image/Background/Spike.png")
+      )
 {
     SetPosition(pos);
 }

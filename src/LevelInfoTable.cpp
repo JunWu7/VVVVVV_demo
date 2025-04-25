@@ -30,6 +30,7 @@ LevelInfoTable::LevelInfoTable() {
         false,
         {{-201, -303}, {-151, -303}, {-101, -303}, {-51, -303},{-1, -303},
             {49, -303}, {99, -303}, {149, -303}, {199, -303}},
+{},
         {}
     };
 
@@ -44,6 +45,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -58,6 +60,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -72,6 +75,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -85,7 +89,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::TrafficJam,
         true,
         false,
-        {},
+        {{-70, -303}, {-25, -303}, {20, -303}, {65, -303}, {110, -303},{155, -303}},
+{{-300, 360},{-253.125, 360},{-206.25, 360},{-159.375,360},{-112.5, 360},
+            {-65.625, 360},{-18.75, 360},{28.125, 360},{75, 360}},
         {}
     };
 
@@ -100,6 +106,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -114,6 +121,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -128,6 +136,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -142,6 +151,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -156,6 +166,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -170,6 +181,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -184,6 +196,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -198,6 +211,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -212,6 +226,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -226,6 +241,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -240,6 +256,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -254,6 +271,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -268,6 +286,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -282,6 +301,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -296,6 +316,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -310,6 +331,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -324,6 +346,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -338,6 +361,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
@@ -352,6 +376,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         {},
+{},
         {}
     };
 
