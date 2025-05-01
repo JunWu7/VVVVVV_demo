@@ -21,7 +21,7 @@ public:
     ~Player() = default;
 
     // Method
-    void FlipGravity() { isGravityFlipped = !isGravityFlipped; }
+    void FlipGravity();
 
     bool GetGravityFlipped() { return isGravityFlipped; }
 
@@ -42,6 +42,8 @@ public:
     bool isTouchUpWall();
 
     bool isTouchDownWall();
+
+    // void flipCharacterIm
 
 };
 #endif //PLAYER_HPP

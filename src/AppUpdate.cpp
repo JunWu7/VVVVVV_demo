@@ -107,7 +107,6 @@ void App::Update() {
 
 	if (m_LM->isTouchSavePoint(m_Player->GetPosition())) {
 		m_LM->setSavePointPosition(m_Player->GetPosition());
-		m_LM->setSavePointIsReverse(m_Player->GetGravityFlipped());
 	}
 
     /*

@@ -31,6 +31,16 @@ public:
 		std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->Play();
 	}
 
+	void SetCurrentFrame(int frame) {
+		// Set the current frame of the animation
+		std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->SetCurrentFrame(frame);
+	}
+
+	void Draw() {
+		std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->Play();
+		std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->Pause();
+	}
+
 	[[nodiscard]] bool IfAnimationEnds() const;
 
 	void SetPosition(const glm::vec2& Position) {

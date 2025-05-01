@@ -4,6 +4,19 @@
 
 #include "Player.hpp"
 
+void Player::FlipGravity() {
+    isGravityFlipped = !isGravityFlipped;
+    if (isGravityFlipped) {
+        SetCurrentFrame(1);
+        Draw();
+    }
+    else {
+        SetCurrentFrame(0);
+        Draw();
+    }
+}
+
+
 void Player::Update() {
     if (isGravityFlipped) {
         m_Transform.translation.y += 15;

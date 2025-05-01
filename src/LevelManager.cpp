@@ -80,6 +80,11 @@ bool LevelManager::isTouchSavePoint(const glm::vec2& Position) {
     for (const auto& savePoint : m_SavePoints) {
         if (savePoint->IsTouchSavePoint(Position)) {
             m_SavePointLevelID = m_CurrentLevelID;
+            if (savePoint->GetImagePath() == std::string(GA_RESOURCE_DIR) + "/Image/Background/SavePointReverse.png") {
+                m_SavePointIsReverse = true;
+            } else {
+                m_SavePointIsReverse = false;
+            }
             return true;
         }
     }
