@@ -98,11 +98,16 @@ void App::Update() {
 
 	//if player is touching the trap, set the game to the start
 	if (m_LM->isTouchTrap(m_Player->GetPosition())) {
-		m_Player->SetPosition({0, 0});
-		if (m_Player->GetGravityFlipped()) {
+		m_Player->SetPosition(m_LM->getSavePointPosition());
+		if (m_Player->GetGravityFlipped() != m_LM->getSavePointIsReverse()) {
 			m_Player->FlipGravity();
 		}
-		m_LM->setLevelDataByID(LevelID::WelcomeAboard);
+		m_LM->setLevelDataByID(m_LM->getSavePointLevelID());
+	}
+
+	if (m_LM->isTouchSavePoint(m_Player->GetPosition())) {
+		m_LM->setSavePointPosition(m_Player->GetPosition());
+		m_LM->setSavePointIsReverse(m_Player->GetGravityFlipped());
 	}
 
     /*

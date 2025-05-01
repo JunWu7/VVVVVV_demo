@@ -13,8 +13,11 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::WelcomeAboard,
         LevelID::Conundrum,
         false,                              // 沒有陷阱
-        false,                              // 有敵人
+        false,
+        false,// 有敵人
         {},                                 // 無陷阱位置
+        {},
+        {},
         {},
         {}  // 敵人位置
     };
@@ -29,8 +32,11 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::Solitude,
         true,
         false,
+        false,
         {{-201, -303}, {-151, -303}, {-101, -303}, {-51, -303},{-1, -303},
             {49, -303}, {99, -303}, {149, -303}, {199, -303}},
+        {},
+        {},
         {},
         {}
     };
@@ -43,10 +49,13 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::Solitude,
         LevelID::Conundrum,
         LevelID::Solitude,
-        true,
         false,
+        false,
+        true,
         {},
         {},
+        {},
+        {{-30, -225}},
         {}
     };
 
@@ -58,8 +67,11 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::Solitude,
         LevelID::LeapOfFaith,
         LevelID::LeapOfFaith,
-        true,
         false,
+        false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -73,11 +85,14 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::LeapOfFaith,
         LevelID::AtmosphericFilteringUnit,
         LevelID::TrafficJam,
-        true,
         false,
+        false,
+        true,
         {},
         {},
-        {}
+        {},
+        {},
+        {{317.5, -287.5}}
     };
 
     // AtmosphericFilteringUnit
@@ -90,9 +105,12 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::TrafficJam,
         true,
         false,
+        false,
         {{-70, -303}, {-25, -303}, {20, -303}, {65, -303}, {110, -303},{155, -303}},
         {{-300, 360},{-253.125, 360},{-206.25, 360},{-159.375,360},{-112.5, 360},
             {-65.625, 360},{-18.75, 360},{28.125, 360},{75, 360}},
+        {},
+        {},
         {}
     };
 
@@ -106,9 +124,12 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::ItsASecretToNobody,
         true,
         false,
+        false,
         {{-430, -175},{-390, -175},{-350, -175},{-140, -175},
             {-100, -175},{-60, -175},{-20, -175},{20, -175},{60, -175}},
         {{-300, 136},{-255, 136},{-210, 136},{-165, 136},{-120, 136},{80, 136}, {125, 136}, {170, 136}},
+        {},
+        {},
         {}
     };
     // {-460, -175}
@@ -123,6 +144,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::AtmosphericFilteringUnit,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -138,6 +162,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::LinearCollider,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -153,6 +180,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::CommsRelay,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -168,6 +198,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::CommsRelay,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -183,6 +216,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::TheYesMen,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -198,6 +234,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::TrenchWarfare,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -213,6 +252,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::TrenchWarfare,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -228,6 +270,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::BBBBusted,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -243,6 +288,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::TheSensibleRoom,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -258,6 +306,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::TheSensibleRoom,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -273,6 +324,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::Driller,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -288,6 +342,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::Quicksand,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -303,6 +360,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::ExhaustChute,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -318,6 +378,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::Sorrow,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -333,6 +396,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::Quicksand,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -348,6 +414,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::BrassSentUsUnderTheTop,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -363,6 +432,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::AWrinkleInTime,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}
@@ -378,6 +450,9 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::AWrinkleInTime,
         true,
         false,
+        false,
+        {},
+        {},
         {},
         {},
         {}

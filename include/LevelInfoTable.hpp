@@ -50,9 +50,12 @@ struct LevelData {
     LevelID rightWall;
     bool hasTraps;                        // 是否有陷阱
     bool hasEnemies;                      // 是否有敵人
+    bool hasSavePoint;                  // 是否有存檔點
     std::vector<glm::vec2> trapPositions; // 陷阱位置陣列
     std::vector<glm::vec2> trapReversePositions; // 倒過來的陷阱位置陣列
     std::vector<glm::vec2> enemyPositions;// 敵人位置陣列
+    std::vector<glm::vec2> savePointPositions; // 存檔點位置陣列
+    std::vector<glm::vec2> saveReversePositions; // 倒過來的存檔點位置陣列
 };
 
 // --- LevelInfoTable 類別 ---

@@ -10,6 +10,7 @@
 #include "LevelInfoTable.hpp"
 #include <unordered_map>
 #include  "Trap.hpp"
+#include "SavePoint.hpp"
 
 class LevelManager : public Util::GameObject {
 public:
@@ -29,7 +30,7 @@ public:
 
     void isTouchDownWall();
 
-    void isTouchSavePoint();
+    bool isTouchSavePoint(const glm::vec2& Position);
 
     void isTouchEnemy();
 
@@ -39,6 +40,18 @@ public:
 
     void setLevelDataByID(LevelID levelId);
 
+    glm::vec2& getSavePointPosition() {return m_SavePointPosition;}
+
+    void setSavePointPosition(const glm::vec2& position) {m_SavePointPosition = position;}
+
+    bool getSavePointIsReverse() const { return m_SavePointIsReverse; }
+
+    void setSavePointIsReverse(bool setting) { m_SavePointIsReverse = setting; }
+
+    void setSavePointLevelID(LevelID levelId) { m_SavePointLevelID = levelId; }
+
+    LevelID getSavePointLevelID() const { return m_SavePointLevelID; }
+
 private:
     std::shared_ptr<Image> m_Level;
     std::shared_ptr<Image> m_Background;
@@ -47,6 +60,11 @@ private:
     std::shared_ptr<LevelInfoTable> m_LevelInfoTable;
     LevelData levelData;
     std::vector<std::shared_ptr<Trap>> m_Traps;
+    std::vector<std::shared_ptr<SavePoint>> m_SavePoints;
+    glm::vec2 m_SavePointPosition = {0, 0};
+    LevelID m_SavePointLevelID;
+    bool  m_SavePointIsReverse = false;
+    LevelID m_CurrentLevelID;
 
     int imageWidth = 1280;
     int imageHeight = 915;
@@ -62,6 +80,8 @@ private:
     glm::ivec2 WorldToImageCoords(float wx, float wy) const;
 
     void clearAllTrap();
+
+    void clearAllSavePoint();
 };
 
 #endif //LEVELMANAGER_HPP

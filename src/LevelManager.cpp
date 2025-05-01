@@ -19,6 +19,8 @@ LevelManager::LevelManager() {
     m_Level = std::make_shared<Image>(levelData.imageName, -10);
     m_Background = std::make_shared<Image>(levelData.backgroundName, -10);
     setWalkableMask(LevelID::WelcomeAboard);
+    m_SavePointLevelID = LevelID::WelcomeAboard;
+    m_CurrentLevelID = LevelID::WelcomeAboard;
 }
 
 bool LevelManager::isMoveAble(const glm::vec2& position, bool isIncrement, bool isVertical) {
@@ -48,29 +50,40 @@ bool LevelManager::isMoveAble(const glm::vec2& position, bool isIncrement, bool 
 
 void LevelManager::isTouchUpWall() {
     setWalkableMask(levelData.upWall);
+    m_CurrentLevelID = levelData.upWall;
     levelData = m_LevelInfoTable->GetLevelData(levelData.upWall);
     setLevel();
 }
 
 void LevelManager::isTouchDownWall() {
     setWalkableMask(levelData.downWall);
+    m_CurrentLevelID = levelData.downWall;
     levelData = m_LevelInfoTable->GetLevelData(levelData.downWall);
     setLevel();
 }
 
 void LevelManager::isTouchRightWall() {
     setWalkableMask(levelData.rightWall);
+    m_CurrentLevelID = levelData.rightWall;
     levelData = m_LevelInfoTable->GetLevelData(levelData.rightWall);
     setLevel();
 }
 
 void LevelManager::isTouchLeftWall() {
     setWalkableMask(levelData.leftWall);
+    m_CurrentLevelID = levelData.leftWall;
     levelData = m_LevelInfoTable->GetLevelData(levelData.leftWall);
     setLevel();
 }
 
-void LevelManager::isTouchSavePoint() {
+bool LevelManager::isTouchSavePoint(const glm::vec2& Position) {
+    for (const auto& savePoint : m_SavePoints) {
+        if (savePoint->IsTouchSavePoint(Position)) {
+            m_SavePointLevelID = m_CurrentLevelID;
+            return true;
+        }
+    }
+    return false;
 }
 
 void LevelManager::isTouchEnemy() {
@@ -90,14 +103,25 @@ bool LevelManager::isTouchTrap(const glm::vec2& Position) {
 
 void LevelManager::setLevel() {
     clearAllTrap();
+    clearAllSavePoint();
     m_Level->ChangeImage(levelData.imageName);
     m_Background->ChangeImage(levelData.backgroundName);
-    if (levelData.hasTraps) {
-        setTrap();
-    }
+    if (levelData.hasTraps) {setTrap();}
+    if (levelData.hasSavePoint) {setSavePoint();}
 }
 
 void LevelManager::setSavePoint() {
+    for (const auto& pos : levelData.savePointPositions) {
+        m_SavePoints.push_back(std::make_shared<SavePoint>(pos));
+    }
+    for (const auto& pos : levelData.saveReversePositions) {
+        m_SavePoints.push_back(std::make_shared<SavePoint>(pos, true));
+    }
+    for (const auto& savePoint : m_SavePoints) {
+        savePoint->SetZIndex(0);
+        savePoint->SetVisible(true);
+        m_Level->AddChild(savePoint);
+    }
 }
 
 void LevelManager::setTrap() {
@@ -155,6 +179,7 @@ glm::ivec2 LevelManager::WorldToImageCoords(float wx, float wy) const {
 
 void LevelManager::setLevelDataByID(LevelID levelId) {
     setWalkableMask(levelId);
+    m_CurrentLevelID = levelId;
     levelData = m_LevelInfoTable->GetLevelData(levelId);
     setLevel();
 }
@@ -164,4 +189,11 @@ void LevelManager::clearAllTrap() {
         trap->Destroy();
     }
     m_Traps.clear();
+}
+
+void LevelManager::clearAllSavePoint() {
+    for (const auto& savePoint : m_SavePoints) {
+        savePoint->Destroy();
+    }
+    m_SavePoints.clear();
 }
