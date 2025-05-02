@@ -11,7 +11,7 @@
 class SavePoint : public Character {
 public:
     SavePoint(const glm::vec2& pos, bool isReverse = false);
-    bool IsTouchSavePoint(const glm::vec2& playerPos);
+    bool IsTouchSavePoint(const glm::vec2& savePointPos);
     void Destroy();
 
 private:

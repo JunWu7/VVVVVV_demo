@@ -86,11 +86,15 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::AtmosphericFilteringUnit,
         LevelID::TrafficJam,
         false,
-        false,
+        true,
         true,
         {},
         {},
-        {},
+        {
+            {std::string(GA_RESOURCE_DIR) + "/Image/Background/5.enemy.png",   {220, -80}, {220, 210}, {90, 130}, true, 10.0f},
+            {std::string(GA_RESOURCE_DIR) + "/Image/Background/5.enemy.png",   {-100, 85}, {-100, 375}, {90, 130}, false, 10.0f},
+            {std::string(GA_RESOURCE_DIR) + "/Image/Background/5.enemy.png",   {-415, -80}, {-415, 210}, {90, 130}, true, 10.0f}
+        },
         {},
         {{317.5, -287.5}}
     };

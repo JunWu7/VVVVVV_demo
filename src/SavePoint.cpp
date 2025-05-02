@@ -14,10 +14,10 @@ SavePoint::SavePoint(const glm::vec2& pos, bool isReverse)
     SetPosition(pos);
 }
 
-bool SavePoint::IsTouchSavePoint(const glm::vec2& playerPos)
+bool SavePoint::IsTouchSavePoint(const glm::vec2& savePointPos)
 {
-    return std::abs(playerPos.x - m_Transform.translation.x) * 2 < (40 + 55) &&
-           std::abs(playerPos.y - m_Transform.translation.y) * 2 < (82 + 61);
+    return std::abs(savePointPos.x - m_Transform.translation.x) * 2 < (40 + 55) &&
+           std::abs(savePointPos.y - m_Transform.translation.y) * 2 < (82 + 61);
 }
 
 void SavePoint::Destroy() {

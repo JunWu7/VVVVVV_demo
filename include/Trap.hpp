@@ -11,7 +11,7 @@
 class Trap : public Character {
 public:
     Trap(const glm::vec2& pos, bool isReverse = false);
-    bool IsTouchTrap(const glm::vec2& playerPos);
+    bool IsTouchTrap(const glm::vec2& trapPos);
     void Destroy();
 
 private:

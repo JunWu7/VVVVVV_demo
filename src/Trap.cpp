@@ -14,10 +14,10 @@ Trap::Trap(const glm::vec2& pos, bool isReverse)
     SetPosition(pos);
 }
 
-bool Trap::IsTouchTrap(const glm::vec2& playerPos)
+bool Trap::IsTouchTrap(const glm::vec2& trapPos)
 {
-    return std::abs(playerPos.x - m_Transform.translation.x) * 2 < (40 + 49) &&
-           std::abs(playerPos.y - m_Transform.translation.y) * 2 < (82 + 52);
+    return std::abs(trapPos.x - m_Transform.translation.x) * 2 < (40 + 49) &&
+           std::abs(trapPos.y - m_Transform.translation.y) * 2 < (82 + 52);
 }
 
 void Trap::Destroy() {

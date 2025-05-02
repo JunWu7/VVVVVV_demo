@@ -40,6 +40,15 @@ enum class LevelID {
     // 可依照實作添加更多關卡
 };
 
+struct EnemyInfo {
+    std::string imagePath;
+    glm::vec2 position1;
+    glm::vec2 position2;
+    glm::vec2 size;
+    bool isIncrement;
+    float speed;
+};
+
 // --- 每個關卡的資料結構 ---
 struct LevelData {
     std::string imageName;                // 主場景圖片
@@ -53,7 +62,7 @@ struct LevelData {
     bool hasSavePoint;                  // 是否有存檔點
     std::vector<glm::vec2> trapPositions; // 陷阱位置陣列
     std::vector<glm::vec2> trapReversePositions; // 倒過來的陷阱位置陣列
-    std::vector<glm::vec2> enemyPositions;// 敵人位置陣列
+    std::vector<EnemyInfo> enemyInfos;// 敵人位置陣列
     std::vector<glm::vec2> savePointPositions; // 存檔點位置陣列
     std::vector<glm::vec2> saveReversePositions; // 倒過來的存檔點位置陣列
 };

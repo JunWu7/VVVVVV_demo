@@ -91,11 +91,16 @@ bool LevelManager::isTouchSavePoint(const glm::vec2& Position) {
     return false;
 }
 
-void LevelManager::isTouchEnemy() {
+bool LevelManager::isTouchEnemy(const glm::vec2& Position) {
+    for (const auto& enemy : m_Enemies) {
+        if (enemy->IsTouchEnemy(Position)) {
+            return true;
+        }
+    }
+    return false;
 }
 
 bool LevelManager::isTouchTrap(const glm::vec2& Position) {
-    //if any trap is touching the player, return true, else return false
     for (const auto& trap : m_Traps) {
         if (trap->IsTouchTrap(Position)) {
             return true;
@@ -109,10 +114,12 @@ bool LevelManager::isTouchTrap(const glm::vec2& Position) {
 void LevelManager::setLevel() {
     clearAllTrap();
     clearAllSavePoint();
+    clearAllEnemies();
     m_Level->ChangeImage(levelData.imageName);
     m_Background->ChangeImage(levelData.backgroundName);
     if (levelData.hasTraps) {setTrap();}
     if (levelData.hasSavePoint) {setSavePoint();}
+    if (levelData.hasEnemies) {setEnemy();}
 }
 
 void LevelManager::setSavePoint() {
@@ -142,6 +149,19 @@ void LevelManager::setTrap() {
         m_Level->AddChild(trap);
     }
 }
+
+void LevelManager::setEnemy() {
+    for (const auto& enemyInfos : levelData.enemyInfos) {
+        m_Enemies.push_back(std::make_shared<Enemy>(enemyInfos.imagePath, enemyInfos.position1, enemyInfos.position2,
+            enemyInfos.size, enemyInfos.isIncrement, enemyInfos.speed));
+    }
+    for (const auto& enemy : m_Enemies) {
+        enemy->SetZIndex(0);
+        enemy->SetVisible(true);
+        m_Level->AddChild(enemy);
+    }
+}
+
 
 void LevelManager::setWalkableMask(LevelID levelId) {
     walkableMask = walkableMaskMap[levelId];
@@ -201,4 +221,19 @@ void LevelManager::clearAllSavePoint() {
         savePoint->Destroy();
     }
     m_SavePoints.clear();
+}
+
+void LevelManager::clearAllEnemies() {
+    for (const auto& enemy : m_Enemies) {
+        enemy->Destroy();
+    }
+    m_Enemies.clear();
+}
+
+void LevelManager::updateEnemies() {
+    if (levelData.hasEnemies) {
+        for (const auto& enemy : m_Enemies) {
+            enemy->Update();
+        }
+    }
 }

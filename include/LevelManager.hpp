@@ -11,6 +11,7 @@
 #include <unordered_map>
 #include  "Trap.hpp"
 #include "SavePoint.hpp"
+#include "Enemy.hpp"
 
 class LevelManager : public Util::GameObject {
 public:
@@ -32,7 +33,7 @@ public:
 
     bool isTouchSavePoint(const glm::vec2& Position);
 
-    void isTouchEnemy();
+    bool isTouchEnemy(const glm::vec2& Position);
 
     bool isTouchTrap(const glm::vec2& Position);
 
@@ -52,6 +53,10 @@ public:
 
     LevelID getSavePointLevelID() const { return m_SavePointLevelID; }
 
+    LevelID getCurrentLevelID() const { return m_CurrentLevelID; }
+
+    void updateEnemies();
+
 private:
     std::shared_ptr<Image> m_Level;
     std::shared_ptr<Image> m_Background;
@@ -65,6 +70,7 @@ private:
     LevelID m_SavePointLevelID;
     bool  m_SavePointIsReverse = false;
     LevelID m_CurrentLevelID;
+    std::vector<std::shared_ptr<Enemy>> m_Enemies;
 
     int imageWidth = 1280;
     int imageHeight = 915;
@@ -75,6 +81,8 @@ private:
 
     void setTrap();
 
+    void setEnemy();
+
     void setWalkableMask(LevelID levelId);
 
     glm::ivec2 WorldToImageCoords(float wx, float wy) const;
@@ -82,6 +90,9 @@ private:
     void clearAllTrap();
 
     void clearAllSavePoint();
+
+    void clearAllEnemies();
+
 };
 
 #endif //LEVELMANAGER_HPP

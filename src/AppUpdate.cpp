@@ -96,18 +96,20 @@ void App::Update() {
 		fallAble = !fallAble;
 	}
 
-	//if player is touching the trap, set the game to the start
-	if (m_LM->isTouchTrap(m_Player->GetPosition())) {
+	//if player is touching the trap or enemy
+	if (m_LM->isTouchTrap(m_Player->GetPosition()) || m_LM->isTouchEnemy(m_Player->GetPosition())) {
 		m_Player->SetPosition(m_LM->getSavePointPosition());
 		if (m_Player->GetGravityFlipped() != m_LM->getSavePointIsReverse()) {
 			m_Player->FlipGravity();
 		}
-		m_LM->setLevelDataByID(m_LM->getSavePointLevelID());
+		if (m_LM->getCurrentLevelID() != m_LM->getSavePointLevelID()) {m_LM->setLevelDataByID(m_LM->getSavePointLevelID());}
 	}
 
 	if (m_LM->isTouchSavePoint(m_Player->GetPosition())) {
 		m_LM->setSavePointPosition(m_Player->GetPosition());
 	}
+
+	m_LM->updateEnemies();
 
     /*
      *  Do not touch the code below as they serve the purpose for validating the tasks,
