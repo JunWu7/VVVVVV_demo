@@ -93,8 +93,7 @@ LevelInfoTable::LevelInfoTable() {
         {
             {std::string(GA_RESOURCE_DIR) + "/Image/Background/5.enemy.png",   {220, -80}, {220, 210}, {90, 130}, true, 10.0f},
             {std::string(GA_RESOURCE_DIR) + "/Image/Background/5.enemy.png",   {-100, 85}, {-100, 375}, {90, 130}, false, 10.0f},
-            {std::string(GA_RESOURCE_DIR) + "/Image/Background/5.enemy.png",   {-415, -80}, {-415, 210}, {90, 130}, true, 10.0f}
-        },
+            {std::string(GA_RESOURCE_DIR) + "/Image/Background/5.enemy.png",   {-415, -80}, {-415, 210}, {90, 130}, true, 10.0f}},
         {},
         {{317.5, -287.5}}
     };
@@ -109,13 +108,13 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::TrafficJam,
         true,
         false,
-        false,
+        true,
         {{-70, -303}, {-25, -303}, {20, -303}, {65, -303}, {110, -303},{155, -303}},
         {{-300, 360},{-253.125, 360},{-206.25, 360},{-159.375,360},{-112.5, 360},
             {-65.625, 360},{-18.75, 360},{28.125, 360},{75, 360}},
         {},
-        {},
-        {}
+        {{-165, -195}},
+        {{160, 255}}
     };
 
     // ItsASecretToNobody
@@ -128,12 +127,12 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::ItsASecretToNobody,
         true,
         false,
-        false,
+        true,
         {{-430, -175},{-390, -175},{-350, -175},{-140, -175},
             {-100, -175},{-60, -175},{-20, -175},{20, -175},{60, -175}},
         {{-300, 136},{-255, 136},{-210, 136},{-165, 136},{-120, 136},{80, 136}, {125, 136}, {170, 136}},
         {},
-        {},
+        {{255, -130}},
         {}
     };
     // {-460, -175}
@@ -146,14 +145,15 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::LinearCollider,
         LevelID::SecuritySweep,
         LevelID::AtmosphericFilteringUnit,
+        false,
         true,
-        false,
-        false,
+        true,
         {},
         {},
-        {},
-        {},
-        {}
+        {{std::string(GA_RESOURCE_DIR) + "/Image/Background/8.enemy.png",   {-290, 100}, {290, 100}, {128, 66}, true, 6.0f},
+        {std::string(GA_RESOURCE_DIR) + "/Image/Background/8.enemy.png",   {-290, -62}, {290, -62}, {128, 66}, false, 6.0f}},
+        {{-513, -220}},
+        {{510, 255}}
     };
 
     // SecuritySweep
@@ -164,13 +164,13 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::GentryAndDolly,
         LevelID::SecuritySweep,
         LevelID::LinearCollider,
+        false,
         true,
-        false,
-        false,
+        true,
         {},
         {},
-        {},
-        {},
+        {{std::string(GA_RESOURCE_DIR) + "/Image/Background/9.point.png",   {186, 345}, {186, -214}, {67, 67}, false, 15.0f}},
+        {{62, 34}},
         {}
     };
 
@@ -185,7 +185,9 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         false,
-        {},
+        {{-74, -16}, {-34, -16}, {6, -16}, {-125, -367},
+            {-75, -367}, {-25, -367}, {26, -367}, {75, -367}, {126, -367},
+            {175, -367},{226.125, -367},{275, -367},{326,-367}},
         {},
         {},
         {},
@@ -200,7 +202,7 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::CommsRelay,
         LevelID::GentryAndDolly,
         LevelID::CommsRelay,
-        true,
+        false,
         false,
         false,
         {},
@@ -218,14 +220,18 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::StopAndReflect,
         LevelID::TheYesMen,
         LevelID::TheYesMen,
+        false,
         true,
-        false,
-        false,
+        true,
         {},
         {},
-        {},
-        {},
-        {}
+        {{std::string(GA_RESOURCE_DIR) + "/Image/Background/12.yesman.png",   {-117, 385}, {-117, 148}, {83, 83}, false, 5.0f},
+        {std::string(GA_RESOURCE_DIR) + "/Image/Background/12.yesman.png",   {-117, -122}, {-117, -356}, {83, 83}, true, 5.0f},
+        {std::string(GA_RESOURCE_DIR) + "/Image/Background/12.yesman.png",   {460, 385}, {460, -225}, {83, 83}, false,5.0f},
+        {std::string(GA_RESOURCE_DIR) + "/Image/Background/12.yesman.png",   {176, 269}, {176, 70}, {83, 83}, false, 7.0f},
+        {std::string(GA_RESOURCE_DIR) + "/Image/Background/12.yesman.png",   {176, -245}, {176, -50}, {83, 83}, false, 7.0f}},
+        {{-352, 126}},
+        {{-352, -94}}
     };
 
     // StopAndReflect
@@ -238,11 +244,11 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::TrenchWarfare,
         true,
         false,
-        false,
+        true,
+        {{-228, -241}, {-188, -241}},
+        {{-228, 270}, {-188, 270}},
         {},
-        {},
-        {},
-        {},
+        {{540, -190}},
         {}
     };
 
@@ -255,11 +261,16 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::StopAndReflect,
         LevelID::TrenchWarfare,
         true,
+        true,
         false,
-        false,
         {},
-        {},
-        {},
+        {{-435, 175}, {-400, 175},{-85, 175},{-50, 175},{210, 175},{240, 175},
+            {-367, 363}, {-332, 363},{-297, 363},{-262, 363},{-227, 363},{-192, 363},{-157, 363}, {-122, 363},
+            {-3, 363}, {33, 363},{69, 363},{105, 363},{141, 363},{177, 363},
+            {273, 363}, {308, 363},{343, 363},{378, 363},{413, 363},{448, 363},{483, 363}, {518, 363}},
+        {{std::string(GA_RESOURCE_DIR) + "/Image/Background/14.enemy.png",   {-180, -350}, {-180, -100}, {70, 76}, true, 7.0f},
+            {std::string(GA_RESOURCE_DIR) + "/Image/Background/14.enemy.png",   {75, -350}, {75, -100}, {70, 76}, false, 7.0f},
+            {std::string(GA_RESOURCE_DIR) + "/Image/Background/14.enemy.png",   {335, -350}, {335, -100}, {70, 76}, true, 7.0f}},
         {},
         {}
     };
@@ -274,11 +285,22 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::BBBBusted,
         true,
         false,
-        false,
+        true,
+        {{20, 80}, {60, 80}, {100, 80},
+            {405, 80}, {445, 80}, {485, 80},{525, 80}, {565, 80}, {605, 80},
+            {-495, -365}, {-455, -365}, {-415, -365},
+            {-235, -365}, {-195, -365}, {-155, -365},
+            {25, -365}, {65, -365}, {105, -365},
+            {285, -365}, {325, -365}, {365, -365}},
+            {{-172, 395}, {-132, 395}, {-92, 395},
+            {212, 395}, {252, 395}, {292, 395},
+            {405, -55}, {445, -55}, {485, -55},{525, -55}, {565, -55}, {605, -55},
+            {-530, -55},{-570, -55},{-610, -55},
+            {-275, -55}, {-315, -55}, {-355, -55},
+            {-105, -55}, {-65, -55}, {-25, -55},
+            {150, -55}, {190, -55}, {230, -55}},
         {},
-        {},
-        {},
-        {},
+        {{-353, 127}},
         {}
     };
 
