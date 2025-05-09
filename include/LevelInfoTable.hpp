@@ -47,6 +47,7 @@ struct EnemyInfo {
     glm::vec2 size;
     bool isIncrement;
     float speed;
+    bool isEnemyReverseAble = false;
 };
 
 // --- 每個關卡的資料結構 ---

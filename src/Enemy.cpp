@@ -4,15 +4,20 @@
 
 #include "Enemy.hpp"
 
-Enemy::Enemy(const std::string& imagePath, const glm::vec2& p1, const glm::vec2& p2, const glm::vec2& size, bool isIncrement, float speed)
+Enemy::Enemy(const std::string& imagePath, const glm::vec2& p1, const glm::vec2& p2, const glm::vec2& size, bool isIncrement, float speed, bool IsReverseAble, int entryDirection)
     : Character(imagePath),
       m_Point1(p1),
       m_Point2(p2),
       m_ImageSize(size),
       m_IsIncrement(isIncrement),
-      m_Speed(speed)
+      m_Speed(speed),
+      m_IsReverseAble(IsReverseAble)
 {
     SetPosition(m_IsIncrement ? m_Point1 : m_Point2);
+    if (entryDirection == 3 && IsReverseAble) {
+        SetPosition(m_Point2);
+        m_IsIncrement = !m_IsIncrement;
+    }
 }
 
 bool Enemy::IsTouchEnemy(const glm::vec2& enemyPos)

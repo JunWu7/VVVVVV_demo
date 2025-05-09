@@ -313,11 +313,11 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::VStitch,
         LevelID::TheSensibleRoom,
         true,
+        true,
         false,
-        false,
         {},
         {},
-        {},
+        {{std::string(GA_RESOURCE_DIR) + "/Image/Background/16.enemy.png",   {-640, 290}, {640, 290}, {257, 184}, true, 10.0f, true}},
         {},
         {}
     };

@@ -75,13 +75,13 @@ private:
     int imageWidth = 1280;
     int imageHeight = 915;
 
-    void setLevel();
+    void setLevel(int entryDirection);
 
     void setSavePoint();
 
     void setTrap();
 
-    void setEnemy();
+    void setEnemy(int entryDirection);
 
     void setWalkableMask(LevelID levelId);
 

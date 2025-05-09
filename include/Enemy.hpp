@@ -10,7 +10,8 @@
 
 class Enemy : public Character {
 public:
-    Enemy(const std::string& imagePath, const glm::vec2& p1, const glm::vec2& p2, const glm::vec2& size, bool isIncrement, float speed = 15.0f);
+    Enemy(const std::string& imagePath, const glm::vec2& p1, const glm::vec2& p2, const glm::vec2& size, bool isIncrement,
+        float speed = 15.0f, bool IsReverseAble = false, int entryDirection = 0);
     bool IsTouchEnemy(const glm::vec2& enemyPos);
     void Update();
     void Destroy();
@@ -22,6 +23,7 @@ private:
     float m_Speed;          // 每次更新的移動速度
     bool m_IsIncrement;       // 目前方向
     glm::vec2 m_ImageSize;
+    bool m_IsReverseAble;    // 是否可以反向
 };
 
 #endif //ENEMY_HPP
