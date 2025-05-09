@@ -45,9 +45,6 @@ void App::Update() {
 	}
 
 	if (Util::Input::IsKeyPressed(Util::Keycode::LEFT) || Util::Input::IsKeyPressed(Util::Keycode::A)) {
-		// if (m_LM->isMoveAble(m_Player->GetPosition(), false, false)) {
-		// 	m_Player->Move(false);
-		// }
 		for (int i = 6;i>0;i--) {
 			if (m_LM->isMoveAble(m_Player->GetPosition(), false, false)) {
 				m_Player->Move(false, 2);
