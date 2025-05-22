@@ -10,6 +10,7 @@
 #include "AnimatedCharacter.hpp"
 #include "Player.hpp"
 #include "LevelManager.hpp"
+#include "MapManager.hpp"
 
 class App {
 public:
@@ -32,34 +33,17 @@ private:
     void ValidTask();
 
 private:
-    // enum class Phase {
-    //     CHANGE_CHARACTER_IMAGE,
-    //     ABLE_TO_MOVE,
-    //     COLLIDE_DETECTION,
-    //     BEE_ANIMATION,
-    //     OPEN_THE_DOORS,
-    //     COUNTDOWN,
-    // };
-
-
     State m_CurrentState = State::START;
-    // Phase m_Phase = Phase::CHANGE_CHARACTER_IMAGE;
 
     Util::Renderer m_Root;
 
-    // std::shared_ptr<Character> m_Giraffe;
-    // std::shared_ptr<Character> m_Chest;
-    // std::vector<std::shared_ptr<Character>> m_Doors;
-    //
-    // std::shared_ptr<AnimatedCharacter> m_Bee;
-    // std::shared_ptr<AnimatedCharacter> m_Ball;
-
     std::shared_ptr<Player> m_Player;
 
-    // std::shared_ptr<PhaseResourceManger> m_PRM;
     std::shared_ptr<LevelManager> m_LM;
 
     bool fallAble = false;
+
+    std::shared_ptr<MapManager> m_Map;
 };
 
 #endif

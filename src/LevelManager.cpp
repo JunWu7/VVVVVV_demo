@@ -3,7 +3,6 @@
 //
 
 #include "LevelManager.hpp"
-#include "BackgroundImage.hpp"
 #include "ImageLoader.hpp"
 
 // #define STB_IMAGE_IMPLEMENTATION
