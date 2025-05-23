@@ -32,6 +32,11 @@ public:
             result.push_back(std::static_pointer_cast<Util::GameObject>(currentMap));
         }
 
+        // 將 map_currentMapTitle 的每個 shared_ptr 加入結果中（需轉型）
+        for (const auto& currentMapTitle : map_currentMapTitle) {
+            result.push_back(std::static_pointer_cast<Util::GameObject>(currentMapTitle));
+        }
+
         return result;
     }
 
@@ -59,6 +64,8 @@ private:
     std::vector<bool> map_IsMaskCover;
     std::vector<std::shared_ptr<Image>> map_currentMap;
     std::vector<bool> map_WhichIsCurrentMap;
+    std::vector<std::shared_ptr<Image>> map_currentMapTitle;
+    std::vector<bool> map_WhichIsCurrentMapTitle;
     bool mapCalled = false;
     bool mapMoveComplete = true;
 
