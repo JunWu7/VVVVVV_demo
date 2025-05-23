@@ -57,6 +57,8 @@ public:
 
     void updateEnemies();
 
+    bool isSteppedOnQuickSand() const { return m_isSteppedOnQuickSand; }
+
 private:
     std::shared_ptr<Image> m_Level;
     std::shared_ptr<Image> m_Background;
@@ -71,6 +73,7 @@ private:
     bool  m_SavePointIsReverse = false;
     LevelID m_CurrentLevelID;
     std::vector<std::shared_ptr<Enemy>> m_Enemies;
+    bool m_isSteppedOnQuickSand = false;
 
     int imageWidth = 1280;
     int imageHeight = 915;

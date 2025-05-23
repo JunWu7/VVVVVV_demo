@@ -68,9 +68,10 @@ private:
     std::vector<bool> map_WhichIsCurrentMapTitle;
     bool mapCalled = false;
     bool mapMoveComplete = true;
-
-    int imageWidth = 1280;
-    int imageHeight = 915;
+    const float MAP_MOVE_SPEED = 50;
+    const int MAP_SIZE = 25;
+    const float MAP_HIDE_Y = -950;
+    const float MAP_SHOW_Y = 0;
 
 };
 
