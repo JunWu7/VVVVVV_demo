@@ -59,6 +59,10 @@ public:
 
     bool isSteppedOnQuickSand() const { return m_isSteppedOnQuickSand; }
 
+    void setIsinGame(bool setting) { m_isInGame = setting; }
+
+    bool isInGame() const { return m_isInGame; }
+
 private:
     std::shared_ptr<Image> m_Level;
     std::shared_ptr<Image> m_Background;
@@ -74,6 +78,7 @@ private:
     LevelID m_CurrentLevelID;
     std::vector<std::shared_ptr<Enemy>> m_Enemies;
     bool m_isSteppedOnQuickSand = false;
+    bool m_isInGame = true;
 
     int imageWidth = 1280;
     int imageHeight = 915;
