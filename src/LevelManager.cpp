@@ -105,17 +105,40 @@ bool LevelManager::isTouchTrap(const glm::vec2& Position) {
     return false;
 }
 
+bool LevelManager::isTouchQuickSand(const glm::vec2& Position) {
+    for (const auto& quickSand : m_QuickSand) {
+        if (quickSand->IsTouchQuickSand(Position)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 //private method
 
 void LevelManager::setLevel(int entryDirection) {
     clearAllTrap();
     clearAllSavePoint();
     clearAllEnemies();
+    clearAllQuickSand();
     m_Level->ChangeImage(levelData.imageName);
     m_Background->ChangeImage(levelData.backgroundName);
     if (levelData.hasTraps) {setTrap();}
     if (levelData.hasSavePoint) {setSavePoint();}
     if (levelData.hasEnemies) {setEnemy(entryDirection);}
+    if (levelData.hasQuickSand) {setQuickSandPosition();}
+}
+
+void LevelManager::setEnemy(int entryDirection) {
+    for (const auto& enemyInfos : levelData.enemyInfos) {
+        m_Enemies.push_back(std::make_shared<Enemy>(enemyInfos.imagePath, enemyInfos.position1, enemyInfos.position2,
+            enemyInfos.size, enemyInfos.isIncrement, enemyInfos.speed, enemyInfos.isEnemyReverseAble, entryDirection));
+    }
+    for (const auto& enemy : m_Enemies) {
+        enemy->SetZIndex(0);
+        enemy->SetVisible(true);
+        m_Level->AddChild(enemy);
+    }
 }
 
 void LevelManager::setSavePoint() {
@@ -132,6 +155,21 @@ void LevelManager::setSavePoint() {
     }
 }
 
+void LevelManager::setQuickSandPosition() {
+    for (const auto& quickSanfInfos : levelData.quickSandPositions) {
+        std::vector<std::string> temp;
+        for (int i = 0; i < 5; ++i) {
+            temp.push_back(std::string(GA_RESOURCE_DIR) + "/Image/Background/" + quickSanfInfos.color + "Sand" + std::to_string(i) + ".png");
+        }
+        m_QuickSand.push_back(std::make_shared<QuickSand>(quickSanfInfos.position, temp));
+    }
+    for (const auto& quickSand : m_QuickSand) {
+        quickSand->SetZIndex(0);
+        quickSand->SetVisible(true);
+        m_Level->AddChild(quickSand);
+    }
+}
+
 void LevelManager::setTrap() {
     for (const auto& pos : levelData.trapPositions) {
         m_Traps.push_back(std::make_shared<Trap>(pos));
@@ -145,19 +183,6 @@ void LevelManager::setTrap() {
         m_Level->AddChild(trap);
     }
 }
-
-void LevelManager::setEnemy(int entryDirection) {
-    for (const auto& enemyInfos : levelData.enemyInfos) {
-        m_Enemies.push_back(std::make_shared<Enemy>(enemyInfos.imagePath, enemyInfos.position1, enemyInfos.position2,
-            enemyInfos.size, enemyInfos.isIncrement, enemyInfos.speed, enemyInfos.isEnemyReverseAble, entryDirection));
-    }
-    for (const auto& enemy : m_Enemies) {
-        enemy->SetZIndex(0);
-        enemy->SetVisible(true);
-        m_Level->AddChild(enemy);
-    }
-}
-
 
 void LevelManager::setWalkableMask(LevelID levelId) {
     walkableMask = walkableMaskMap[levelId];
@@ -224,6 +249,13 @@ void LevelManager::clearAllEnemies() {
         enemy->Destroy();
     }
     m_Enemies.clear();
+}
+
+void LevelManager::clearAllQuickSand() {
+    for (const auto& quickSand : m_QuickSand) {
+        quickSand->Destroy();
+    }
+    m_QuickSand.clear();
 }
 
 void LevelManager::updateEnemies() {

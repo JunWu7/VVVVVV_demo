@@ -12,6 +12,7 @@
 #include  "Trap.hpp"
 #include "SavePoint.hpp"
 #include "Enemy.hpp"
+#include "QuickSand.hpp"
 
 class LevelManager : public Util::GameObject {
 public:
@@ -37,6 +38,8 @@ public:
 
     bool isTouchTrap(const glm::vec2& Position);
 
+    bool isTouchQuickSand(const glm::vec2& Position);
+
     void preloadAllWalkableMasks(const LevelInfoTable& infoTable);
 
     void setLevelDataByID(LevelID levelId);
@@ -57,8 +60,6 @@ public:
 
     void updateEnemies();
 
-    bool isSteppedOnQuickSand() const { return m_isSteppedOnQuickSand; }
-
     void setIsinGame(bool setting) { m_isInGame = setting; }
 
     bool isInGame() const { return m_isInGame; }
@@ -77,8 +78,8 @@ private:
     bool  m_SavePointIsReverse = false;
     LevelID m_CurrentLevelID;
     std::vector<std::shared_ptr<Enemy>> m_Enemies;
-    bool m_isSteppedOnQuickSand = false;
     bool m_isInGame = true;
+    std::vector<std::shared_ptr<QuickSand>> m_QuickSand;
 
     int imageWidth = 1280;
     int imageHeight = 915;
@@ -91,6 +92,8 @@ private:
 
     void setEnemy(int entryDirection);
 
+    void setQuickSandPosition();
+
     void setWalkableMask(LevelID levelId);
 
     glm::ivec2 WorldToImageCoords(float wx, float wy) const;
@@ -100,6 +103,8 @@ private:
     void clearAllSavePoint();
 
     void clearAllEnemies();
+
+    void clearAllQuickSand();
 
 };
 

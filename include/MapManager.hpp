@@ -8,10 +8,6 @@
 #include "Util/GameObject.hpp"
 #include "Image.hpp"
 #include "LevelInfoTable.hpp"
-#include <unordered_map>
-#include  "Trap.hpp"
-#include "SavePoint.hpp"
-#include "Enemy.hpp"
 
 class MapManager : public Util::GameObject {
 public:

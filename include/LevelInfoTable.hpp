@@ -50,6 +50,11 @@ struct EnemyInfo {
     bool isEnemyReverseAble = false;
 };
 
+struct QuickSandInfo {
+    glm::vec2 position;
+    std::string color;
+};
+
 // --- 每個關卡的資料結構 ---
 struct LevelData {
     std::string imageName;                // 主場景圖片
@@ -61,11 +66,15 @@ struct LevelData {
     bool hasTraps;                        // 是否有陷阱
     bool hasEnemies;                      // 是否有敵人
     bool hasSavePoint;                  // 是否有存檔點
+    bool hasQuickSand = false; // 是否有流沙
+    bool hasMovingPlatform = false; // 是否有移動平台
     std::vector<glm::vec2> trapPositions; // 陷阱位置陣列
     std::vector<glm::vec2> trapReversePositions; // 倒過來的陷阱位置陣列
     std::vector<EnemyInfo> enemyInfos;// 敵人位置陣列
     std::vector<glm::vec2> savePointPositions; // 存檔點位置陣列
     std::vector<glm::vec2> saveReversePositions; // 倒過來的存檔點位置陣列
+    std::vector<QuickSandInfo> quickSandPositions; // 流沙位置陣列
+    std::vector<glm::vec2> movingPlatformPositions; // 移動平台位置陣列
 };
 
 // --- LevelInfoTable 類別 ---

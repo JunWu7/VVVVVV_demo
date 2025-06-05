@@ -7,16 +7,16 @@ void App::Update() {
 	if (m_LM->isInGame()) {
 		// the part deal with the player gravity
 		if (m_Player->GetGravityFlipped()) {
-			if (m_LM->isMoveAble(m_Player->GetPosition(), false, true) && !fallAble && !m_LM->isSteppedOnQuickSand()) {
+			if (m_LM->isMoveAble(m_Player->GetPosition(), false, true) && !fallAble && !m_LM->isTouchQuickSand(m_Player->GetPosition())) {
 				m_Player->Update();
 			}
-			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), false, true)));
+			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), false, true)) || m_LM->isTouchQuickSand(m_Player->GetPosition()));
 		}
 		else {
-			if (m_LM->isMoveAble(m_Player->GetPosition(), true, true) && !fallAble && !m_LM->isSteppedOnQuickSand()) {
+			if (m_LM->isMoveAble(m_Player->GetPosition(), true, true) && !fallAble && !m_LM->isTouchQuickSand(m_Player->GetPosition())) {
 				m_Player->Update();
 			}
-			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), true, true)));
+			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), true, true)) || m_LM->isTouchQuickSand(m_Player->GetPosition()));
 		}
 
 		// the part deal with the player touch the wall
