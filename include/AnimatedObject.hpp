@@ -61,6 +61,8 @@ public:
         std::dynamic_pointer_cast<Util::Animation>(m_Drawable)->SetInterval(interval);
     }
 
+    bool GetVisibility() const { return m_Visible; }
+
 };
 
 #endif //ANIMATED_OBJECT_HPP

@@ -38,7 +38,11 @@ public:
 
     bool isTouchTrap(const glm::vec2& Position);
 
-    bool isTouchQuickSand(const glm::vec2& Position);
+    bool isStepOnQuickSand(const glm::vec2& Position);
+
+    bool IsTouchQuickSandLeft(const glm::vec2& Position);
+
+    bool IsTouchQuickSandRight(const glm::vec2& Position);
 
     void preloadAllWalkableMasks(const LevelInfoTable& infoTable);
 

@@ -7,16 +7,16 @@ void App::Update() {
 	if (m_LM->isInGame()) {
 		// the part deal with the player gravity
 		if (m_Player->GetGravityFlipped()) {
-			if (m_LM->isMoveAble(m_Player->GetPosition(), false, true) && !fallAble && !m_LM->isTouchQuickSand(m_Player->GetPosition())) {
+			if (m_LM->isMoveAble(m_Player->GetPosition(), false, true) && !fallAble && !m_LM->isStepOnQuickSand(m_Player->GetPosition())) {
 				m_Player->Update();
 			}
-			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), false, true)) || m_LM->isTouchQuickSand(m_Player->GetPosition()));
+			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), false, true)) || m_LM->isStepOnQuickSand(m_Player->GetPosition()));
 		}
 		else {
-			if (m_LM->isMoveAble(m_Player->GetPosition(), true, true) && !fallAble && !m_LM->isTouchQuickSand(m_Player->GetPosition())) {
+			if (m_LM->isMoveAble(m_Player->GetPosition(), true, true) && !fallAble && !m_LM->isStepOnQuickSand(m_Player->GetPosition())) {
 				m_Player->Update();
 			}
-			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), true, true)) || m_LM->isTouchQuickSand(m_Player->GetPosition()));
+			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), true, true)) || m_LM->isStepOnQuickSand(m_Player->GetPosition()));
 		}
 
 		// the part deal with the player touch the wall
@@ -57,7 +57,7 @@ void App::Update() {
 		// the part deal with the player move
 		if (Util::Input::IsKeyPressed(Util::Keycode::LEFT) || Util::Input::IsKeyPressed(Util::Keycode::A)) {
 			for (int i = 6;i>0;i--) {
-				if (m_LM->isMoveAble(m_Player->GetPosition(), false, false)) {
+				if (m_LM->isMoveAble(m_Player->GetPosition(), false, false) && !m_LM->IsTouchQuickSandRight(m_Player->GetPosition())) {
 					m_Player->Move(false, 2);
 				}
 				else {
@@ -67,7 +67,7 @@ void App::Update() {
 		}
 		else if (Util::Input::IsKeyUp(Util::Keycode::LEFT) || Util::Input::IsKeyUp(Util::Keycode::A)) {
 			for (int i = 4;i>0;i--) {
-				if (m_LM->isMoveAble(m_Player->GetPosition(), false, false)) {
+				if (m_LM->isMoveAble(m_Player->GetPosition(), false, false) && !m_LM->IsTouchQuickSandRight(m_Player->GetPosition())) {
 					m_Player->Move(false, i);
 				}
 				else {
@@ -80,7 +80,7 @@ void App::Update() {
 			// 	m_Player->Move(true);
 			// }
 			for (int i = 6;i>0;i--) {
-				if (m_LM->isMoveAble(m_Player->GetPosition(), true, false)) {
+				if (m_LM->isMoveAble(m_Player->GetPosition(), true, false) && !m_LM->IsTouchQuickSandLeft(m_Player->GetPosition())) {
 					m_Player->Move(true, 2);
 				}
 				else {
@@ -90,7 +90,7 @@ void App::Update() {
 		}
 		else if (Util::Input::IsKeyUp(Util::Keycode::RIGHT) || Util::Input::IsKeyUp(Util::Keycode::D)) {
 			for (int i = 4;i>0;i--) {
-				if (m_LM->isMoveAble(m_Player->GetPosition(), true, false)) {
+				if (m_LM->isMoveAble(m_Player->GetPosition(), true, false) && !m_LM->IsTouchQuickSandLeft(m_Player->GetPosition())) {
 					m_Player->Move(true, i);
 				}
 				else {

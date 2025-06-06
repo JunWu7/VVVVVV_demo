@@ -35,13 +35,15 @@ bool LevelManager::isMoveAble(const glm::vec2& position, bool isIncrement, bool 
         }
         return (walkableMask[imageCoord.y * imageWidth + imageCoord.x] && walkableMask[imageCoord.y * imageWidth + (imageCoord.x + 15)] && walkableMask[imageCoord.y * imageWidth + (imageCoord.x - 15)]);
     }
-    if (isIncrement) {
-        imageCoord.x += 25;
-    } else {
-        imageCoord.x -= 25;
+    else {
+        if (isIncrement) {
+            imageCoord.x += 25;
+        } else {
+            imageCoord.x -= 25;
+        }
     }
-    return (walkableMask[imageCoord.y * imageWidth + imageCoord.x] && walkableMask[(imageCoord.y + 18) * imageWidth + imageCoord.x] && walkableMask[(imageCoord.y - 18) * imageWidth + imageCoord.x]);
-
+    bool maskAns = (walkableMask[imageCoord.y * imageWidth + imageCoord.x] && walkableMask[(imageCoord.y + 18) * imageWidth + imageCoord.x] && walkableMask[(imageCoord.y - 18) * imageWidth + imageCoord.x]);
+    return maskAns;
 }
 
 void LevelManager::isTouchUpWall() {
@@ -105,9 +107,27 @@ bool LevelManager::isTouchTrap(const glm::vec2& Position) {
     return false;
 }
 
-bool LevelManager::isTouchQuickSand(const glm::vec2& Position) {
+bool LevelManager::isStepOnQuickSand(const glm::vec2& Position) {
     for (const auto& quickSand : m_QuickSand) {
-        if (quickSand->IsTouchQuickSand(Position)) {
+        if (quickSand->isStepOnQuickSand(Position)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool LevelManager::IsTouchQuickSandLeft(const glm::vec2& Position) {
+    for (const auto& quickSand : m_QuickSand) {
+        if (quickSand->IsTouchQuickSandLeft(Position)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool LevelManager::IsTouchQuickSandRight(const glm::vec2& Position) {
+    for (const auto& quickSand : m_QuickSand) {
+        if (quickSand->IsTouchQuickSandRight(Position)) {
             return true;
         }
     }

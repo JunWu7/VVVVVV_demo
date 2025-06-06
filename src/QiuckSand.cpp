@@ -13,29 +13,65 @@ QuickSand::QuickSand(const glm::vec2& pos, const std::vector<std::string>& anima
     SetPlaying(false);
 }
 
-bool QuickSand::IsTouchQuickSand(const glm::vec2& sandPos) {
+bool QuickSand::isStepOnQuickSand(const glm::vec2& sandPos) {
     if (IfAnimationEnds()) {
+        SetVisible(false);
         return false;
     }
 
-    // float dx = std::abs(sandPos.x - m_Transform.translation.x);
-    // float dy = std::abs(sandPos.y - m_Transform.translation.y);
-    // bool xOverlap = dx < (40 + 83);
-    // bool yTouch = std::abs(dy - (82 + 21)) < edge;
-    //
-    // if (GetCurrentFrame() == 0 && xOverlap && yTouch) {
-    //     SetPlaying(true);
-    // }
-    // return xOverlap && yTouch;
+    float dx = std::abs(sandPos.x - m_Transform.translation.x);
+    float dy = std::abs(sandPos.y - m_Transform.translation.y);
 
-    bool isTouching = std::abs(sandPos.x - m_Transform.translation.x) * 2 < (40 + 128) &&
-                      std::abs(sandPos.y - m_Transform.translation.y) * 2 < (82 + 32);
+    bool isTouching = dx * 2 < (40 + 128) && dy * 2 < (82 + 36);
 
-    if (GetCurrentFrame() == 0 && isTouching) {
+    // 「上下方向剛好接觸」的容忍範圍判斷
+    float expectedY = (82 + 32) / 2.0f;  // 一半的高度總和
+    bool isStepOn = dx * 2 < (40 + 128) && std::abs(dy - expectedY) < 16.0f;
+
+    if (GetCurrentFrame() == 0 && isStepOn) {
         SetPlaying(true);
     }
 
     return isTouching;
+}
+
+bool QuickSand::IsTouchQuickSandLeft(const glm::vec2& sandPos) {
+    float playerRightEdge = sandPos.x + 20.0f;
+    float quickSandLeftEdge = m_Transform.translation.x - 64.0f;
+
+    // 水平接觸判斷（角色右邊超過 QuickSand 左邊一點點）
+    bool xOverlap = playerRightEdge >= quickSandLeftEdge && playerRightEdge <= quickSandLeftEdge + 4.0f;
+
+    // 垂直是否重疊（角色中線與 QuickSand 高度相交）
+    float playerTop = sandPos.y - 41.0f;
+    float playerBottom = sandPos.y + 41.0f;
+    float quickSandTop = m_Transform.translation.y - 16.0f;
+    float quickSandBottom = m_Transform.translation.y + 16.0f;
+    bool yOverlap = !(playerBottom < quickSandTop || playerTop > quickSandBottom);
+
+    return xOverlap && yOverlap;
+}
+
+bool QuickSand::IsTouchQuickSandRight(const glm::vec2& sandPos) {
+    float playerLeftEdge = sandPos.x - 20.0f;
+    float quickSandRightEdge = m_Transform.translation.x + 64.0f;
+
+    // 水平接觸判斷（角色左邊超過 QuickSand 右邊一點點）
+    bool xOverlap = playerLeftEdge <= quickSandRightEdge && playerLeftEdge >= quickSandRightEdge - 4.0f;
+
+    // 垂直是否重疊
+    float playerTop = sandPos.y - 41.0f;
+    float playerBottom = sandPos.y + 41.0f;
+    float quickSandTop = m_Transform.translation.y - 16.0f;
+    float quickSandBottom = m_Transform.translation.y + 16.0f;
+    bool yOverlap = !(playerBottom < quickSandTop || playerTop > quickSandBottom);
+
+    return xOverlap && yOverlap;
+}
+
+bool QuickSand::isInBox(float x, float y) {
+    return (x >= m_Transform.translation.x - 64 && x <= m_Transform.translation.x + 64 &&
+            y >= m_Transform.translation.y - 16 && y <= m_Transform.translation.y + 16);
 }
 
 void QuickSand::Destroy() {
