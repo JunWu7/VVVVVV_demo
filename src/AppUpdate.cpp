@@ -7,16 +7,24 @@ void App::Update() {
 	if (m_LM->isInGame()) {
 		// the part deal with the player gravity
 		if (m_Player->GetGravityFlipped()) {
-			if (m_LM->isMoveAble(m_Player->GetPosition(), false, true) && !fallAble && !m_LM->isStepOnQuickSand(m_Player->GetPosition())) {
+			if (m_LM->isMoveAble(m_Player->GetPosition(), false, true) &&
+				!fallAble && !m_LM->isStepOnQuickSand(m_Player->GetPosition()) &&
+				m_LM->getCurrentPlatform() == nullptr) {
 				m_Player->Update();
 			}
-			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), false, true)) || m_LM->isStepOnQuickSand(m_Player->GetPosition()));
+			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), false, true)) ||
+				m_LM->isStepOnQuickSand(m_Player->GetPosition()) ||
+				m_LM->getCurrentPlatform() != nullptr);
 		}
 		else {
-			if (m_LM->isMoveAble(m_Player->GetPosition(), true, true) && !fallAble && !m_LM->isStepOnQuickSand(m_Player->GetPosition())) {
+			if (m_LM->isMoveAble(m_Player->GetPosition(), true, true) &&
+				!fallAble && !m_LM->isStepOnQuickSand(m_Player->GetPosition()) &&
+				m_LM->getCurrentPlatform() == nullptr) {
 				m_Player->Update();
 			}
-			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), true, true)) || m_LM->isStepOnQuickSand(m_Player->GetPosition()));
+			m_Player->SetFlipAble(!(m_LM->isMoveAble(m_Player->GetPosition(), true, true)) ||
+				m_LM->isStepOnQuickSand(m_Player->GetPosition()) ||
+				m_LM->getCurrentPlatform() != nullptr);
 		}
 
 		// the part deal with the player touch the wall
@@ -120,6 +128,45 @@ void App::Update() {
 
 		// the part deal with the player touch the enemy
 		m_LM->updateEnemies();
+
+		// the part deal with the player touch the moving platform
+		m_LM->updateMovingPlatforms(m_Player->GetPosition());
+
+		// the part deal with the player step on moving platform
+		if (m_LM->getCurrentPlatform() != nullptr) {
+			// if (m_LM->getMovingPlatformIsVertical()) {
+			// 	if (m_LM->getMovingPlatformIsIncrement()) {
+			// 		m_Player->MoveY(true, m_LM->getMovingPlatformSpeed());
+			// 	}
+			// 	else {
+			// 		m_Player->MoveY(false, m_LM->getMovingPlatformSpeed());
+			// 	}
+			// }
+			// else {
+			// 	if (m_LM->getMovingPlatformIsIncrement()) {
+			// 		m_Player->Move(true, m_LM->getMovingPlatformSpeed());
+			// 	}
+			// 	else {
+			// 		m_Player->Move(false, m_LM->getMovingPlatformSpeed());
+			// 	}
+			// }
+			MovingPlatform* platform = m_LM->getCurrentPlatform();
+
+			if (platform->GetVertical())
+			{
+				if (platform->GetIsIncrement())
+					m_Player->MoveY(true, platform->GetSpeed());
+				else
+					m_Player->MoveY(false, platform->GetSpeed());
+			}
+			else
+			{
+				if (platform->GetIsIncrement())
+					m_Player->Move(true, platform->GetSpeed());
+				else
+					m_Player->Move(false, platform->GetSpeed());
+			}
+		}
 	}
 
 	// the part deal with the player call the map

@@ -33,6 +33,14 @@ void Player::Move(bool isRight, int speed) {
     }
 }
 
+void Player::MoveY(bool isUp, int speed) {
+    if (isUp) {
+        m_Transform.translation.y += speed;
+    } else {
+        m_Transform.translation.y -= speed;
+    }
+}
+
 bool Player::isTouchUpWall() {
     if (m_Transform.translation.y >= 452) {
         m_Transform.translation.y = -377.5;

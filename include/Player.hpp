@@ -31,6 +31,8 @@ public:
 
     void Move(bool isRight, int speed = 15);
 
+    void MoveY(bool isUp, int speed = 15);
+
     [[nodiscard]] const glm::vec2& GetPosition() const { return m_Transform.translation; }
 
     bool GetFlipAble() { return isFlipAble; };

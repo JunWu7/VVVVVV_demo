@@ -134,6 +134,18 @@ bool LevelManager::IsTouchQuickSandRight(const glm::vec2& Position) {
     return false;
 }
 
+bool LevelManager::isTouchMovingPlatform(const glm::vec2& Position) {
+    for (const auto& MovingPlatform : m_MovingPlatforms) {
+        if (MovingPlatform->IsTouchMovingPlatform(Position)) {
+            m_movingPlatformIsVertical = MovingPlatform->GetVertical();
+            m_movingPlatformIsIncrement = MovingPlatform->GetIsIncrement();
+            m_movingPlatformSpeed = MovingPlatform->GetSpeed();
+            return true;
+        }
+    }
+    return false;
+}
+
 //private method
 
 void LevelManager::setLevel(int entryDirection) {
@@ -141,12 +153,14 @@ void LevelManager::setLevel(int entryDirection) {
     clearAllSavePoint();
     clearAllEnemies();
     clearAllQuickSand();
+    clearAllMovingPlatform();
     m_Level->ChangeImage(levelData.imageName);
     m_Background->ChangeImage(levelData.backgroundName);
     if (levelData.hasTraps) {setTrap();}
     if (levelData.hasSavePoint) {setSavePoint();}
     if (levelData.hasEnemies) {setEnemy(entryDirection);}
     if (levelData.hasQuickSand) {setQuickSandPosition();}
+    if (levelData.hasMovingPlatform) {setMovingPlatform();}
 }
 
 void LevelManager::setEnemy(int entryDirection) {
@@ -175,6 +189,20 @@ void LevelManager::setSavePoint() {
     }
 }
 
+void LevelManager::setTrap() {
+    for (const auto& pos : levelData.trapPositions) {
+        m_Traps.push_back(std::make_shared<Trap>(pos));
+    }
+    for (const auto& pos : levelData.trapReversePositions) {
+        m_Traps.push_back(std::make_shared<Trap>(pos, true));
+    }
+    for (const auto& trap : m_Traps) {
+        trap->SetZIndex(0);
+        trap->SetVisible(true);
+        m_Level->AddChild(trap);
+    }
+}
+
 void LevelManager::setQuickSandPosition() {
     for (const auto& quickSanfInfos : levelData.quickSandPositions) {
         std::vector<std::string> temp;
@@ -190,17 +218,15 @@ void LevelManager::setQuickSandPosition() {
     }
 }
 
-void LevelManager::setTrap() {
-    for (const auto& pos : levelData.trapPositions) {
-        m_Traps.push_back(std::make_shared<Trap>(pos));
+void LevelManager::setMovingPlatform() {
+    for (const auto& movingPlatformInfos : levelData.movingPlatformPositions) {
+        m_MovingPlatforms.push_back(std::make_shared<MovingPlatform>(movingPlatformInfos.imagePath, movingPlatformInfos.position1, movingPlatformInfos.position2,
+            movingPlatformInfos.startP, movingPlatformInfos.size, movingPlatformInfos.speed, movingPlatformInfos.isVertical, movingPlatformInfos.isIncrement));
     }
-    for (const auto& pos : levelData.trapReversePositions) {
-        m_Traps.push_back(std::make_shared<Trap>(pos, true));
-    }
-    for (const auto& trap : m_Traps) {
-        trap->SetZIndex(0);
-        trap->SetVisible(true);
-        m_Level->AddChild(trap);
+    for (const auto& movingPlatform : m_MovingPlatforms) {
+        movingPlatform->SetZIndex(0);
+        movingPlatform->SetVisible(true);
+        m_Level->AddChild(movingPlatform);
     }
 }
 
@@ -278,10 +304,33 @@ void LevelManager::clearAllQuickSand() {
     m_QuickSand.clear();
 }
 
+void LevelManager::clearAllMovingPlatform() {
+    for (const auto& movingPlatform : m_MovingPlatforms) {
+        movingPlatform->Destroy();
+    }
+    m_MovingPlatforms.clear();
+}
+
+
 void LevelManager::updateEnemies() {
     if (levelData.hasEnemies) {
         for (const auto& enemy : m_Enemies) {
             enemy->Update();
+        }
+    }
+}
+
+void LevelManager::updateMovingPlatforms(const glm::vec2& Position) {
+    if (levelData.hasMovingPlatform) {
+        m_CurrentPlatform = nullptr;
+        for (const auto& movingPlatform : m_MovingPlatforms) {
+            movingPlatform->Update();
+            if (movingPlatform->IsTouchMovingPlatform(Position)) {
+                // m_movingPlatformIsVertical = movingPlatform->GetVertical();
+                // m_movingPlatformIsIncrement = movingPlatform->GetIsIncrement();
+                // m_movingPlatformSpeed = movingPlatform->GetSpeed();
+                m_CurrentPlatform = movingPlatform.get();
+            }
         }
     }
 }

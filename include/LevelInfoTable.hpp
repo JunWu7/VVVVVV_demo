@@ -55,6 +55,17 @@ struct QuickSandInfo {
     std::string color;
 };
 
+struct MovingPlatformInfo {
+    std::string imagePath;
+    glm::vec2 position1;
+    glm::vec2 position2;
+    glm::vec2 startP;
+    glm::vec2 size;
+    float speed;
+    bool isVertical;
+    bool isIncrement;
+};
+
 // --- 每個關卡的資料結構 ---
 struct LevelData {
     std::string imageName;                // 主場景圖片
@@ -74,7 +85,7 @@ struct LevelData {
     std::vector<glm::vec2> savePointPositions; // 存檔點位置陣列
     std::vector<glm::vec2> saveReversePositions; // 倒過來的存檔點位置陣列
     std::vector<QuickSandInfo> quickSandPositions; // 流沙位置陣列
-    std::vector<glm::vec2> movingPlatformPositions; // 移動平台位置陣列
+    std::vector<MovingPlatformInfo> movingPlatformPositions; // 移動平台位置陣列
 };
 
 // --- LevelInfoTable 類別 ---

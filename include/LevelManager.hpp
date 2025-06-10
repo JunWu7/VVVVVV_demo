@@ -13,6 +13,7 @@
 #include "SavePoint.hpp"
 #include "Enemy.hpp"
 #include "QuickSand.hpp"
+#include "MovingPlatform.hpp"
 
 class LevelManager : public Util::GameObject {
 public:
@@ -44,6 +45,8 @@ public:
 
     bool IsTouchQuickSandRight(const glm::vec2& Position);
 
+    bool isTouchMovingPlatform(const glm::vec2& Position);
+
     void preloadAllWalkableMasks(const LevelInfoTable& infoTable);
 
     void setLevelDataByID(LevelID levelId);
@@ -51,8 +54,6 @@ public:
     glm::vec2& getSavePointPosition() {return m_SavePointPosition;}
 
     void setSavePointPosition(const glm::vec2& position) {m_SavePointPosition = position;}
-
-    bool getSavePointIsReverse() const { return m_SavePointIsReverse; }
 
     void setSavePointIsReverse(bool setting) { m_SavePointIsReverse = setting; }
 
@@ -62,7 +63,19 @@ public:
 
     LevelID getCurrentLevelID() const { return m_CurrentLevelID; }
 
+    bool getSavePointIsReverse() const { return m_SavePointIsReverse; }
+
+    bool getMovingPlatformIsVertical() const { return m_movingPlatformIsVertical; }
+
+    bool getMovingPlatformIsIncrement() const { return m_movingPlatformIsIncrement; }
+
+    float getMovingPlatformSpeed() const { return m_movingPlatformSpeed; }
+
+    MovingPlatform *getCurrentPlatform() const { return m_CurrentPlatform; }
+
     void updateEnemies();
+
+    void updateMovingPlatforms(const glm::vec2& Position);
 
     void setIsinGame(bool setting) { m_isInGame = setting; }
 
@@ -84,6 +97,11 @@ private:
     std::vector<std::shared_ptr<Enemy>> m_Enemies;
     bool m_isInGame = true;
     std::vector<std::shared_ptr<QuickSand>> m_QuickSand;
+    std::vector<std::shared_ptr<MovingPlatform>> m_MovingPlatforms;
+    bool m_movingPlatformIsVertical = false;
+    bool m_movingPlatformIsIncrement = true;
+    float m_movingPlatformSpeed = 15.0f;
+    MovingPlatform* m_CurrentPlatform = nullptr;
 
     int imageWidth = 1280;
     int imageHeight = 915;
@@ -98,6 +116,8 @@ private:
 
     void setQuickSandPosition();
 
+    void setMovingPlatform();
+
     void setWalkableMask(LevelID levelId);
 
     glm::ivec2 WorldToImageCoords(float wx, float wy) const;
@@ -110,6 +130,7 @@ private:
 
     void clearAllQuickSand();
 
+    void clearAllMovingPlatform();
 };
 
 #endif //LEVELMANAGER_HPP

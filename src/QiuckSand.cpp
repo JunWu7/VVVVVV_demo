@@ -32,7 +32,7 @@ bool QuickSand::isStepOnQuickSand(const glm::vec2& sandPos) {
         SetPlaying(true);
     }
 
-    return isTouching;
+    return isStepOn;
 }
 
 bool QuickSand::IsTouchQuickSandLeft(const glm::vec2& sandPos) {
