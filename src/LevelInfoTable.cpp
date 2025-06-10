@@ -301,7 +301,7 @@ LevelInfoTable::LevelInfoTable() {
         {{540, -192}},
         {},
         {},
-        {{"13.StopAndReflectMP", {-41, 199.5}, {-41, -154.5}, {-41, 199.5}, {140, 35}, 5, true, false},
+        {{"13.StopAndReflectMP", {-41, -154.5}, {-41, 199.5}, {-41, 199.5}, {140, 35}, 5, true, false},
         {"13.StopAndReflectMP", {159, -154.5}, {159, 199.5}, {159, 22.5}, {140, 35}, 5, true, true},
         {"13.StopAndReflectMP",  {359, -154.5}, {359, 199.5}, {359, -154.5}, {140, 35}, 5, true, true}}
     };

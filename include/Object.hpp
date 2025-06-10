@@ -39,7 +39,6 @@ public:
 
     void ChangePositionRight() { m_Transform.translation.x += 20; }
 
-    // TODO: Implement the collision detection
     [[nodiscard]] bool IfCollides(const std::shared_ptr<Object>& other) const {
         if(m_Transform.translation.x >= other->GetPosition().x && m_Transform.translation.y >= other->GetPosition().y)
         {
