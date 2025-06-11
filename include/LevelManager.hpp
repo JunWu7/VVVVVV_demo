@@ -14,6 +14,7 @@
 #include "Enemy.hpp"
 #include "QuickSand.hpp"
 #include "MovingPlatform.hpp"
+#include "Trinket.hpp"
 
 class LevelManager : public Util::GameObject {
 public:
@@ -73,9 +74,13 @@ public:
 
     MovingPlatform *getCurrentPlatform() const { return m_CurrentPlatform; }
 
+    int getDeathCounter() const { return m_deathCounter; }
+
     void updateEnemies();
 
     void updateMovingPlatforms(const glm::vec2& Position);
+
+    void addDeathCounter() { m_deathCounter++; }
 
     void setIsinGame(bool setting) { m_isInGame = setting; }
 
@@ -102,6 +107,8 @@ private:
     bool m_movingPlatformIsIncrement = true;
     float m_movingPlatformSpeed = 15.0f;
     MovingPlatform* m_CurrentPlatform = nullptr;
+
+    int m_deathCounter;
 
     int imageWidth = 1280;
     int imageHeight = 915;

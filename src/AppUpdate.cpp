@@ -114,6 +114,7 @@ void App::Update() {
 
 		// the part deal with the player touch the trap, enemy
 		if (m_LM->isTouchTrap(m_Player->GetPosition()) || m_LM->isTouchEnemy(m_Player->GetPosition())) {
+			m_LM->addDeathCounter();
 			m_Player->SetPosition(m_LM->getSavePointPosition());
 			if (m_Player->GetGravityFlipped() != m_LM->getSavePointIsReverse()) {
 				m_Player->FlipGravity();
@@ -179,15 +180,27 @@ void App::Update() {
 			m_LM->setIsinGame(false);
 		}
 		m_Map->setMapMoveComplete(false);
-		m_Map->updateMap();
+		// m_Map->updateMap();
+		m_Map->updatePage();
+		m_Map->updateStats(m_LM->getDeathCounter());
 	}
 	if (m_Map->isMapCalled() == true && !m_Map->isMapMoveComplete()) {
 		m_Map->callMap();
+	}
+	else if (m_Map->isMapCalled() == true && m_Map->isMapMoveComplete()) {
+		if (Util::Input::IsKeyDown(Util::Keycode::LEFT) || Util::Input::IsKeyDown(Util::Keycode::A)) {
+			m_Map->PreviousPage();
+		}
+		else if (Util::Input::IsKeyDown(Util::Keycode::RIGHT) || Util::Input::IsKeyDown(Util::Keycode::D)) {
+			m_Map->NextPage();
+		}
 	}
 	else if (m_Map->isMapCalled() == false && !m_Map->isMapMoveComplete()) {
 		m_Map->returnMap();
 	}
 	else if (m_Map->isMapMoveComplete() && !m_Map->isMapCalled()) { m_LM->setIsinGame(true); }
+
+	m_Map->addTime();
 
 	// the part deal with the game update
     m_Root.Update();

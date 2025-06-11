@@ -5,10 +5,10 @@
 #ifndef SAVEPOINT_HPP
 #define SAVEPOINT_HPP
 
-#include "Character.hpp"
+#include "Object.hpp"
 #include "Image.hpp"
 
-class SavePoint : public Character {
+class SavePoint : public Object {
 public:
     SavePoint(const glm::vec2& pos, bool isReverse = false);
     bool IsTouchSavePoint(const glm::vec2& savePointPos);

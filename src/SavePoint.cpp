@@ -5,11 +5,7 @@
 #include "SavePoint.hpp"
 
 SavePoint::SavePoint(const glm::vec2& pos, bool isReverse)
-    : Character(
-        std::string(GA_RESOURCE_DIR) +
-        (isReverse ? "/Image/Background/SavePointReverse.png"
-                   : "/Image/Background/SavePoint.png")
-      )
+    : Object(isReverse ? "SavePointReverse" : "SavePoint")
 {
     SetPosition(pos);
 }

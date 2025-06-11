@@ -20,6 +20,7 @@ LevelManager::LevelManager() {
     setWalkableMask(LevelID::WelcomeAboard);
     m_SavePointLevelID = LevelID::WelcomeAboard;
     m_CurrentLevelID = LevelID::WelcomeAboard;
+    m_deathCounter = 0;
 }
 
 bool LevelManager::isMoveAble(const glm::vec2& position, bool isIncrement, bool isVertical) {
@@ -326,9 +327,6 @@ void LevelManager::updateMovingPlatforms(const glm::vec2& Position) {
         for (const auto& movingPlatform : m_MovingPlatforms) {
             movingPlatform->Update();
             if (movingPlatform->IsTouchMovingPlatform(Position)) {
-                // m_movingPlatformIsVertical = movingPlatform->GetVertical();
-                // m_movingPlatformIsIncrement = movingPlatform->GetIsIncrement();
-                // m_movingPlatformSpeed = movingPlatform->GetSpeed();
                 m_CurrentPlatform = movingPlatform.get();
             }
         }

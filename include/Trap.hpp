@@ -5,10 +5,10 @@
 #ifndef TRAP_HPP
 #define TRAP_HPP
 
-#include "Character.hpp"
+#include "Object.hpp"
 #include "Image.hpp"
 
-class Trap : public Character {
+class Trap : public Object {
 public:
     Trap(const glm::vec2& pos, bool isReverse = false);
     bool IsTouchTrap(const glm::vec2& trapPos);

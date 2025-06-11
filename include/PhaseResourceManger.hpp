@@ -2,7 +2,7 @@
 #define PHASE_MANGER_HPP
 
 #include "Util/GameObject.hpp"
-#include "TaskText.hpp"
+#include "MapText.hpp"
 #include "Character.hpp"
 #include "BackgroundImage.hpp"
 
@@ -17,7 +17,7 @@ public:
     void NextPhase();
 
 private:
-    std::shared_ptr<TaskText> m_TaskText;
+    std::shared_ptr<MapText> m_TaskText;
     std::shared_ptr<BackgroundImage> m_Background;
 
     int m_Phase = 1;
