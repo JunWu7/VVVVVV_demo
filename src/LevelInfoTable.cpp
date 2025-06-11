@@ -17,7 +17,9 @@ LevelInfoTable::LevelInfoTable() {
         false,// 有敵人
         true,
         false,
+        false,
         {},                                 // 無陷阱位置
+        {},
         {},
         {},
         {},
@@ -39,8 +41,10 @@ LevelInfoTable::LevelInfoTable() {
         false,
         false,
         false,
+        false,
         {{-201, -303}, {-151, -303}, {-101, -303}, {-51, -303},{-1, -303},
             {49, -303}, {99, -303}, {149, -303}, {199, -303}},
+        {},
         {},
         {},
         {},
@@ -62,10 +66,12 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         false,
+        false,
         {},
         {},
         {},
         {{-30, -227}},
+        {},
         {},
         {},
         {}
@@ -84,6 +90,8 @@ LevelInfoTable::LevelInfoTable() {
         false,
         false,
         false,
+        false,
+        {},
         {},
         {},
         {},
@@ -106,6 +114,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         false,
+        false,
         {},
         {},
         {
@@ -114,6 +123,7 @@ LevelInfoTable::LevelInfoTable() {
             {std::string(GA_RESOURCE_DIR) + "/Image/Background/5.enemy.png",   {-415, -80}, {-415, 210}, {90, 130}, true, 10.0f}},
         {},
         {{317.5, -287.5}},
+        {},
         {},
         {}
     };
@@ -131,12 +141,14 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         false,
+        false,
         {{-70, -303}, {-25, -303}, {20, -303}, {65, -303}, {110, -303},{155, -303}},
         {{-300, 360},{-253.125, 360},{-206.25, 360},{-159.375,360},{-112.5, 360},
             {-65.625, 360},{-18.75, 360},{28.125, 360},{75, 360}},
         {},
         {{-165, -195}},
         {{160, 255}},
+        {},
         {},
         {}
     };
@@ -154,6 +166,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         false,
+        true,
         {{-430, -175},{-390, -175},{-350, -175},{-140, -175},
             {-100, -175},{-60, -175},{-20, -175},{20, -175},{60, -175}},
         {{-300, 136},{-255, 136},{-210, 136},{-165, 136},{-120, 136},{80, 136}, {125, 136}, {170, 136}},
@@ -161,7 +174,8 @@ LevelInfoTable::LevelInfoTable() {
         {{255, -130}},
         {},
         {},
-        {}
+        {},
+        {{-545, -120}}
     };
     // {-460, -175}
 
@@ -178,12 +192,14 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         false,
+        false,
         {},
         {},
         {{std::string(GA_RESOURCE_DIR) + "/Image/Background/8.enemy.png",   {-290, 100}, {290, 100}, {128, 66}, true, 6.0f},
         {std::string(GA_RESOURCE_DIR) + "/Image/Background/8.enemy.png",   {-290, -62}, {290, -62}, {128, 66}, false, 6.0f}},
         {{-513, -225}},
         {{510, 255}},
+        {},
         {},
         {}
     };
@@ -201,10 +217,12 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         false,
+        false,
         {},
         {},
         {{std::string(GA_RESOURCE_DIR) + "/Image/Background/9.point.png",   {186, 345}, {186, -214}, {67, 67}, false, 15.0f}},
         {{62, 25}},
+        {},
         {},
         {},
         {}
@@ -223,6 +241,7 @@ LevelInfoTable::LevelInfoTable() {
         false,
         true,
         true,
+        false,
         {{-74, -16}, {-34, -16}, {6, -16}, {-125, -367},
             {-75, -367}, {-25, -367}, {26, -367}, {75, -367}, {126, -367},
             {175, -367},{226.125, -367},{275, -367},{326,-367}},
@@ -247,6 +266,8 @@ LevelInfoTable::LevelInfoTable() {
         false,
         false,
         false,
+        false,
+        {},
         {},
         {},
         {},
@@ -269,6 +290,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         false,
+        false,
         {},
         {},
         {{std::string(GA_RESOURCE_DIR) + "/Image/Background/12.yesman.png",   {-117, 385}, {-117, 148}, {83, 83}, false, 5.0f},
@@ -278,6 +300,7 @@ LevelInfoTable::LevelInfoTable() {
         {std::string(GA_RESOURCE_DIR) + "/Image/Background/12.yesman.png",   {176, -245}, {176, -50}, {83, 83}, false, 7.0f}},
         {{-352, 126}},
         {{-352, -94}},
+        {},
         {},
         {}
     };
@@ -295,6 +318,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         true,
+        false,
         {{-228, -241}, {-188, -241}},
         {{-228, 270}, {-188, 270}},
         {},
@@ -303,7 +327,8 @@ LevelInfoTable::LevelInfoTable() {
         {},
         {{"13.StopAndReflectMP", {-41, -154.5}, {-41, 199.5}, {-41, 199.5}, {140, 35}, 5, true, false},
         {"13.StopAndReflectMP", {159, -154.5}, {159, 199.5}, {159, 22.5}, {140, 35}, 5, true, true},
-        {"13.StopAndReflectMP",  {359, -154.5}, {359, 199.5}, {359, -154.5}, {140, 35}, 5, true, true}}
+        {"13.StopAndReflectMP",  {359, -154.5}, {359, 199.5}, {359, -154.5}, {140, 35}, 5, true, true}},
+        {}
     };
 
     // TrenchWarfare
@@ -319,6 +344,7 @@ LevelInfoTable::LevelInfoTable() {
         false,
         false,
         true,
+        true,
         {},
         {{-420, 170}, {-70, 170},{-55, 170},{215, 170},{230, 170},
             {-367, 363}, {-332, 363},{-297, 363},{-262, 363},{-227, 363},{-192, 363},{-157, 363}, {-122, 363},
@@ -330,7 +356,8 @@ LevelInfoTable::LevelInfoTable() {
         {},
         {},
         {},
-        {{"14.TrenchWarfareWP", {-327.5, 268}, {482.5, 268}, {-327.5, 268}, {115, 30}, 10, false, true}}
+        {{"14.TrenchWarfareWP", {-327.5, 268}, {482.5, 268}, {-327.5, 268}, {115, 30}, 10, false, true}},
+        {{475, -165}}
     };
 
     // VStitch
@@ -344,6 +371,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         true,
+        false,
         false,
         false,
         {{20, 80}, {60, 80}, {100, 80},
@@ -363,6 +391,7 @@ LevelInfoTable::LevelInfoTable() {
         {{-353, 125}},
         {},
         {},
+        {},
         {}
     };
 
@@ -376,6 +405,7 @@ LevelInfoTable::LevelInfoTable() {
         LevelID::TheSensibleRoom,
         true,
         true,
+        false,
         false,
         false,
         false,
@@ -396,6 +426,7 @@ LevelInfoTable::LevelInfoTable() {
         {},
         {},
         {},
+        {},
         {}
     };
 
@@ -412,6 +443,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         false,
+        false,
         {{-623, 75}, {-583, 75}, {-543, 75}, {-503, 75},
             {-463, 75}, {-423, 75}, {-383, 75}, {-343, 75},
             {-303, 75}, {-263, 75}, {-223, 75}, {-183, 75},
@@ -421,6 +453,7 @@ LevelInfoTable::LevelInfoTable() {
         {},
         {{0, 125}},
         {{-387, -130}},
+        {},
         {},
         {}
     };
@@ -438,6 +471,7 @@ LevelInfoTable::LevelInfoTable() {
         false,
         true,
         false,
+        false,
         {{157, -110}, {197, -110}, {237, -110}, {277, -110},
             {317, -110}, {357, -110}, {397, -110}, {437, -110},
             {477, -110}, {517, -110}, {557, -110}, {597, -110},
@@ -447,6 +481,7 @@ LevelInfoTable::LevelInfoTable() {
         {},
         {},
         {{{0, 300}, "green"}, {{224, -60}, "green"}},
+        {},
         {}
     };
 
@@ -463,6 +498,7 @@ LevelInfoTable::LevelInfoTable() {
         true,
         false,
         false,
+        false,
         {{-608, -110}, {-568, -110}, {-528, -110}, {-488, -110},
             {-448, -110}, {-408, -110}, {-368, -110}, {-328, -110},
             {-288, -110}, {-248, -110}, {-208, -110}, {-168, -110},
@@ -474,6 +510,7 @@ LevelInfoTable::LevelInfoTable() {
         {},
         {},
         {{-450, 350}, {440, 350}},
+        {},
         {},
         {}
     };
@@ -491,6 +528,7 @@ LevelInfoTable::LevelInfoTable() {
         false,
         false,
         false,
+        false,
         {{-300, 142},{-260, 142}, {-220, 142}, {-180, 142},
             {-40, 15},{4, 15}, {44, 15},
             {185, 142}, {225, 142}, {265, 142},{305, 142}},
@@ -500,6 +538,7 @@ LevelInfoTable::LevelInfoTable() {
             {245, 330}, {285, 330},{325, 330},{365, 330},{405, 330},
             {445, 330},{485, 330},{525, 330}, {565, 330},
             {-40, -80},{4, -80}, {44, -80}},
+        {},
         {},
         {},
         {},
@@ -520,6 +559,7 @@ LevelInfoTable::LevelInfoTable() {
         false,
         false,
         false,
+        false,
         {{-152, 303}, {-112, 303},
             {108, 303}, {145, 303},
             {-118, 145}, {-78, 145},
@@ -528,6 +568,7 @@ LevelInfoTable::LevelInfoTable() {
             {108, 237}, {145, 237},
             {-118, 77}, {-75, 77},
             {80, 77}, {118, 77}},
+        {},
         {},
         {},
         {},
@@ -548,6 +589,7 @@ LevelInfoTable::LevelInfoTable() {
         false,
         true,
         false,
+        false,
         {},
         {},
         {},
@@ -559,6 +601,7 @@ LevelInfoTable::LevelInfoTable() {
         {{-64, 74}, ""}, {{64, 74}, ""}, {{192, 74}, ""},
         {{-64, 42}, ""}, {{64, 42}, ""}, {{192, 42}, ""},
         {{-64, 10}, ""}, {{64, 10}, ""}, {{192, 10}, ""}},
+        {},
         {}
     };
 
@@ -575,6 +618,8 @@ LevelInfoTable::LevelInfoTable() {
         false,
         false,
         false,
+        false,
+        {},
         {},
         {},
         {},
@@ -597,6 +642,8 @@ LevelInfoTable::LevelInfoTable() {
         false,
         false,
         false,
+        false,
+        {},
         {},
         {},
         {},
@@ -619,6 +666,8 @@ LevelInfoTable::LevelInfoTable() {
         false,
         false,
         false,
+        false,
+        {},
         {},
         {},
         {},

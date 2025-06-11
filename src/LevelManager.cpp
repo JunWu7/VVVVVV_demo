@@ -21,6 +21,8 @@ LevelManager::LevelManager() {
     m_SavePointLevelID = LevelID::WelcomeAboard;
     m_CurrentLevelID = LevelID::WelcomeAboard;
     m_deathCounter = 0;
+    m_TrinketTakenMap = {false, false};
+    m_trinketCount = 0;
 }
 
 bool LevelManager::isMoveAble(const glm::vec2& position, bool isIncrement, bool isVertical) {
@@ -147,6 +149,23 @@ bool LevelManager::isTouchMovingPlatform(const glm::vec2& Position) {
     return false;
 }
 
+bool LevelManager::isTouchTrinket(const glm::vec2& Position) {
+    for (const auto& trinket : m_Trinkets) {
+        if (trinket->IsTouchTrinket(Position) && !trinket->IsTaken()) {
+            if (getCurrentLevelID() == LevelID::ItsASecretToNobody) {
+                m_TrinketTakenMap[0] = true;
+            } else if (getCurrentLevelID() == LevelID::TrenchWarfare) {
+                m_TrinketTakenMap[1] = true;
+            }
+            m_trinketCount++;
+            trinket->Take();
+            trinket->SetVisible(false);
+            return true;
+        }
+    }
+    return false;
+}
+
 //private method
 
 void LevelManager::setLevel(int entryDirection) {
@@ -155,6 +174,7 @@ void LevelManager::setLevel(int entryDirection) {
     clearAllEnemies();
     clearAllQuickSand();
     clearAllMovingPlatform();
+    clearAllTrinket();
     m_Level->ChangeImage(levelData.imageName);
     m_Background->ChangeImage(levelData.backgroundName);
     if (levelData.hasTraps) {setTrap();}
@@ -162,6 +182,7 @@ void LevelManager::setLevel(int entryDirection) {
     if (levelData.hasEnemies) {setEnemy(entryDirection);}
     if (levelData.hasQuickSand) {setQuickSandPosition();}
     if (levelData.hasMovingPlatform) {setMovingPlatform();}
+    if (levelData.hasTrinket) {setTrinket();}
 }
 
 void LevelManager::setEnemy(int entryDirection) {
@@ -228,6 +249,20 @@ void LevelManager::setMovingPlatform() {
         movingPlatform->SetZIndex(0);
         movingPlatform->SetVisible(true);
         m_Level->AddChild(movingPlatform);
+    }
+}
+
+void LevelManager::setTrinket() {
+    if ((getCurrentLevelID() == LevelID::ItsASecretToNobody && !m_TrinketTakenMap[0]) ||
+        (getCurrentLevelID() == LevelID::TrenchWarfare && !m_TrinketTakenMap[1])) {
+        for (const auto& pos : levelData.trinketPositions) {
+            m_Trinkets.push_back(std::make_shared<Trinket>(pos));
+        }
+        for (const auto& trinket : m_Trinkets) {
+            trinket->SetZIndex(0);
+            trinket->SetVisible(true);
+            m_Level->AddChild(trinket);
+        }
     }
 }
 
@@ -310,6 +345,13 @@ void LevelManager::clearAllMovingPlatform() {
         movingPlatform->Destroy();
     }
     m_MovingPlatforms.clear();
+}
+
+void LevelManager::clearAllTrinket() {
+    for (const auto& trinket : m_Trinkets) {
+        trinket->Destroy();
+    }
+    m_Trinkets.clear();
 }
 
 

@@ -48,6 +48,8 @@ public:
 
     bool isTouchMovingPlatform(const glm::vec2& Position);
 
+    bool isTouchTrinket(const glm::vec2& Position);
+
     void preloadAllWalkableMasks(const LevelInfoTable& infoTable);
 
     void setLevelDataByID(LevelID levelId);
@@ -75,6 +77,8 @@ public:
     MovingPlatform *getCurrentPlatform() const { return m_CurrentPlatform; }
 
     int getDeathCounter() const { return m_deathCounter; }
+
+    int getTrinketCount() const { return m_trinketCount; }
 
     void updateEnemies();
 
@@ -109,6 +113,9 @@ private:
     MovingPlatform* m_CurrentPlatform = nullptr;
 
     int m_deathCounter;
+    std::vector<bool> m_TrinketTakenMap; // 追蹤每個地圖的 Trinket 狀態
+    std::vector<std::shared_ptr<Trinket>> m_Trinkets;
+    int m_trinketCount;
 
     int imageWidth = 1280;
     int imageHeight = 915;
@@ -125,6 +132,8 @@ private:
 
     void setMovingPlatform();
 
+    void setTrinket();
+
     void setWalkableMask(LevelID levelId);
 
     glm::ivec2 WorldToImageCoords(float wx, float wy) const;
@@ -138,6 +147,8 @@ private:
     void clearAllQuickSand();
 
     void clearAllMovingPlatform();
+
+    void clearAllTrinket();
 };
 
 #endif //LEVELMANAGER_HPP

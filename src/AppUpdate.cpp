@@ -122,6 +122,9 @@ void App::Update() {
 			if (m_LM->getCurrentLevelID() != m_LM->getSavePointLevelID()) {m_LM->setLevelDataByID(m_LM->getSavePointLevelID());}
 		}
 
+		// the part deal with the player touch the trinket
+		m_LM->isTouchTrinket(m_Player->GetPosition());
+
 		// the part deal with the player touch the save point
 		if (m_LM->isTouchSavePoint(m_Player->GetPosition())) {
 			m_LM->setSavePointPosition(m_Player->GetPosition());
@@ -182,7 +185,7 @@ void App::Update() {
 		m_Map->setMapMoveComplete(false);
 		// m_Map->updateMap();
 		m_Map->updatePage();
-		m_Map->updateStats(m_LM->getDeathCounter());
+		m_Map->updateStats(m_LM->getDeathCounter(), m_LM->getTrinketCount());
 	}
 	if (m_Map->isMapCalled() == true && !m_Map->isMapMoveComplete()) {
 		m_Map->callMap();

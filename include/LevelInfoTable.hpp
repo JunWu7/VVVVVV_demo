@@ -79,6 +79,7 @@ struct LevelData {
     bool hasSavePoint;                  // 是否有存檔點
     bool hasQuickSand = false; // 是否有流沙
     bool hasMovingPlatform = false; // 是否有移動平台
+    bool hasTrinket = false; // 是否有 Trinket
     std::vector<glm::vec2> trapPositions; // 陷阱位置陣列
     std::vector<glm::vec2> trapReversePositions; // 倒過來的陷阱位置陣列
     std::vector<EnemyInfo> enemyInfos;// 敵人位置陣列
@@ -86,6 +87,7 @@ struct LevelData {
     std::vector<glm::vec2> saveReversePositions; // 倒過來的存檔點位置陣列
     std::vector<QuickSandInfo> quickSandPositions; // 流沙位置陣列
     std::vector<MovingPlatformInfo> movingPlatformPositions; // 移動平台位置陣列
+    std::vector<glm::vec2> trinketPositions; // Trinket 位置陣列
 };
 
 // --- LevelInfoTable 類別 ---

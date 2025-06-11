@@ -76,7 +76,7 @@ public:
 
     void updatePage(Page page = MAP);
 
-    void updateStats(int deathCount);
+    void updateStats(int deathCount, int trinketsCount);
 
     void addTime();
 

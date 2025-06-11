@@ -207,12 +207,26 @@ void MapManager::updatePage(Page page) {
     currentPage = page;
 }
 
-void MapManager::updateStats(int deathCount) {
+void MapManager::updateStats(int deathCount, int trinketsCount) {
     // 更新文字
     // std::ostringstream timerStream;
     // timerStream << "Time: " << std::fixed << std::setprecision(1) << timer;
 
     statsDeathCounterText->SetText(std::to_string(deathCount));
+    switch (trinketsCount) {
+        case 0:
+            statsTrinketsCounterText->SetText("Zero");
+            break;
+        case 1:
+            statsTrinketsCounterText->SetText("One");
+            break;
+        case 2:
+            statsTrinketsCounterText->SetText("Two");
+            break;
+        default:
+            statsTrinketsCounterText->SetText("Zero");
+            break;
+    }
 }
 
 std::string MapManager::formatTime(int totalSeconds) {
