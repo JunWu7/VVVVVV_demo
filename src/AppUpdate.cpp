@@ -84,9 +84,6 @@ void App::Update() {
 			}
 		}
 		if (Util::Input::IsKeyPressed(Util::Keycode::RIGHT) || Util::Input::IsKeyPressed(Util::Keycode::D)) {
-			// if (m_LM->isMoveAble(m_Player->GetPosition(), true, false)) {
-			// 	m_Player->Move(true);
-			// }
 			for (int i = 6;i>0;i--) {
 				if (m_LM->isMoveAble(m_Player->GetPosition(), true, false) && !m_LM->IsTouchQuickSandLeft(m_Player->GetPosition())) {
 					m_Player->Move(true, 2);
@@ -111,9 +108,12 @@ void App::Update() {
 		if (Util::Input::IsKeyDown(Util::Keycode::N)) {
 			fallAble = !fallAble;
 		}
+		if (Util::Input::IsKeyDown(Util::Keycode::K)) {
+			m_LM->setPlayerCantKill();
+		}
 
 		// the part deal with the player touch the trap, enemy
-		if (m_LM->isTouchTrap(m_Player->GetPosition()) || m_LM->isTouchEnemy(m_Player->GetPosition())) {
+		if ((m_LM->isTouchTrap(m_Player->GetPosition()) || m_LM->isTouchEnemy(m_Player->GetPosition())) && !m_LM->getPlayerCantKill()) {
 			m_LM->addDeathCounter();
 			m_Player->SetPosition(m_LM->getSavePointPosition());
 			if (m_Player->GetGravityFlipped() != m_LM->getSavePointIsReverse()) {
@@ -138,22 +138,6 @@ void App::Update() {
 
 		// the part deal with the player step on moving platform
 		if (m_LM->getCurrentPlatform() != nullptr) {
-			// if (m_LM->getMovingPlatformIsVertical()) {
-			// 	if (m_LM->getMovingPlatformIsIncrement()) {
-			// 		m_Player->MoveY(true, m_LM->getMovingPlatformSpeed());
-			// 	}
-			// 	else {
-			// 		m_Player->MoveY(false, m_LM->getMovingPlatformSpeed());
-			// 	}
-			// }
-			// else {
-			// 	if (m_LM->getMovingPlatformIsIncrement()) {
-			// 		m_Player->Move(true, m_LM->getMovingPlatformSpeed());
-			// 	}
-			// 	else {
-			// 		m_Player->Move(false, m_LM->getMovingPlatformSpeed());
-			// 	}
-			// }
 			MovingPlatform* platform = m_LM->getCurrentPlatform();
 
 			if (platform->GetVertical())
@@ -174,7 +158,7 @@ void App::Update() {
 	}
 
 	// the part deal with the player call the map
-	if (Util::Input::IsKeyDown(Util::Keycode::M)) {
+	if (Util::Input::IsKeyDown(Util::Keycode::RETURN) || Util::Input::IsKeyDown(Util::Keycode::KP_ENTER)) {
 		if (m_Map->isMapCalled()) {
 			m_Map->setMapCalled(false);
 		}
@@ -183,7 +167,6 @@ void App::Update() {
 			m_LM->setIsinGame(false);
 		}
 		m_Map->setMapMoveComplete(false);
-		// m_Map->updateMap();
 		m_Map->updatePage();
 		m_Map->updateStats(m_LM->getDeathCounter(), m_LM->getTrinketCount());
 	}

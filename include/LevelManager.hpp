@@ -62,6 +62,8 @@ public:
 
     void setSavePointLevelID(LevelID levelId) { m_SavePointLevelID = levelId; }
 
+    void setPlayerCantKill() { m_playerCantKill = !m_playerCantKill; }
+
     LevelID getSavePointLevelID() const { return m_SavePointLevelID; }
 
     LevelID getCurrentLevelID() const { return m_CurrentLevelID; }
@@ -79,6 +81,8 @@ public:
     int getDeathCounter() const { return m_deathCounter; }
 
     int getTrinketCount() const { return m_trinketCount; }
+
+    bool getPlayerCantKill() const { return m_playerCantKill; }
 
     void updateEnemies();
 
@@ -116,6 +120,8 @@ private:
     std::vector<bool> m_TrinketTakenMap; // 追蹤每個地圖的 Trinket 狀態
     std::vector<std::shared_ptr<Trinket>> m_Trinkets;
     int m_trinketCount;
+
+    bool m_playerCantKill = false; // 玩家是否不能被殺
 
     int imageWidth = 1280;
     int imageHeight = 915;
