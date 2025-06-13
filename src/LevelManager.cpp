@@ -23,6 +23,9 @@ LevelManager::LevelManager() {
     m_deathCounter = 0;
     m_TrinketTakenMap = {false, false};
     m_trinketCount = 0;
+    m_endGameTimer = 0;
+    bgm.Play();
+
 }
 
 bool LevelManager::isMoveAble(const glm::vec2& position, bool isIncrement, bool isVertical) {
@@ -372,5 +375,18 @@ void LevelManager::updateMovingPlatforms(const glm::vec2& Position) {
                 m_CurrentPlatform = movingPlatform.get();
             }
         }
+    }
+}
+
+void LevelManager::endGame() {
+    bgm.FadeOut(1000); // 1 秒內淡出並停止
+    m_endGameTimer++;
+    m_Background->SetZIndex(100);
+    m_Background->SetVisible(true);
+    if (m_endGameTimer < 60 * 3) {
+        m_Background->ChangeImage("endGame1");
+    }
+    else {
+        m_Background->ChangeImage("endGame2");
     }
 }

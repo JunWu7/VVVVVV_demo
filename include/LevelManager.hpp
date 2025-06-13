@@ -15,6 +15,7 @@
 #include "QuickSand.hpp"
 #include "MovingPlatform.hpp"
 #include "Trinket.hpp"
+#include <Util/BGM.hpp>
 
 class LevelManager : public Util::GameObject {
 public:
@@ -64,6 +65,8 @@ public:
 
     void setPlayerCantKill() { m_playerCantKill = !m_playerCantKill; }
 
+    void setIsEndGame() { m_isEndGame = true; }
+
     LevelID getSavePointLevelID() const { return m_SavePointLevelID; }
 
     LevelID getCurrentLevelID() const { return m_CurrentLevelID; }
@@ -84,6 +87,10 @@ public:
 
     bool getPlayerCantKill() const { return m_playerCantKill; }
 
+    bool getIsEndGame() const { return m_isEndGame; }
+
+    int getEndGameTimer() const { return m_endGameTimer; }
+
     void updateEnemies();
 
     void updateMovingPlatforms(const glm::vec2& Position);
@@ -93,6 +100,8 @@ public:
     void setIsinGame(bool setting) { m_isInGame = setting; }
 
     bool isInGame() const { return m_isInGame; }
+
+    void endGame();
 
 private:
     std::shared_ptr<Image> m_Level;
@@ -122,6 +131,10 @@ private:
     int m_trinketCount;
 
     bool m_playerCantKill = false; // 玩家是否不能被殺
+
+    Util::BGM bgm = Util::BGM(std::string(GA_RESOURCE_DIR) + "/BGM/Pushing_Onwards.mp3");
+    bool m_isEndGame = false;
+    int m_endGameTimer;
 
     int imageWidth = 1280;
     int imageHeight = 915;

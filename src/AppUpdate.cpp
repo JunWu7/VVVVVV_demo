@@ -4,7 +4,7 @@
 #include "Util/Keycode.hpp"
 
 void App::Update() {
-	if (m_LM->isInGame()) {
+	if (m_LM->isInGame() && !m_LM->getIsEndGame()) {
 		// the part deal with the player gravity
 		if (m_Player->GetGravityFlipped()) {
 			if (m_LM->isMoveAble(m_Player->GetPosition(), false, true) &&
@@ -155,10 +155,16 @@ void App::Update() {
 					m_Player->Move(false, platform->GetSpeed());
 			}
 		}
+
+		// the part deal with the player end game
+		if (m_LM->getCurrentLevelID() == LevelID::AWrinkleInTime && (Util::Input::IsKeyDown(Util::Keycode::RETURN) || Util::Input::IsKeyDown(Util::Keycode::KP_ENTER))) {
+			m_LM->setIsinGame(false);
+			m_LM->setIsEndGame();
+		}
 	}
 
 	// the part deal with the player call the map
-	if (Util::Input::IsKeyDown(Util::Keycode::RETURN) || Util::Input::IsKeyDown(Util::Keycode::KP_ENTER)) {
+	if ((Util::Input::IsKeyDown(Util::Keycode::RETURN) || Util::Input::IsKeyDown(Util::Keycode::KP_ENTER)) && !m_LM->getIsEndGame()) {
 		if (m_Map->isMapCalled()) {
 			m_Map->setMapCalled(false);
 		}
@@ -187,6 +193,19 @@ void App::Update() {
 	else if (m_Map->isMapMoveComplete() && !m_Map->isMapCalled()) { m_LM->setIsinGame(true); }
 
 	m_Map->addTime();
+
+	// the part deal with the player end game
+	if (m_LM->getIsEndGame()) {
+        m_LM->endGame();
+		if ((Util::Input::IsKeyDown(Util::Keycode::SPACE) ||
+			Util::Input::IsKeyDown(Util::Keycode::UP) ||
+			Util::Input::IsKeyDown(Util::Keycode::DOWN) ||
+			Util::Input::IsKeyDown(Util::Keycode::W) ||
+			Util::Input::IsKeyDown(Util::Keycode::S)) &&
+			m_LM->getEndGameTimer() >= 60 * 3) {
+			m_CurrentState = State::END;
+		}
+    }
 
 	// the part deal with the game update
     m_Root.Update();
